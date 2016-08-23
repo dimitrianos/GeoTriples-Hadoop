@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Geotriples-Hadoop.iml" filepath="$PROJECT_DIR$/Geotriples-Hadoop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hadoop_Implementation/Hadoop_Implementation.iml" filepath="$PROJECT_DIR$/Hadoop_Implementation/Hadoop_Implementation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Shapefile/Shapefile.iml" filepath="$PROJECT_DIR$/Shapefile/Shapefile.iml" />
+    </modules>
+  </component>
+</project>

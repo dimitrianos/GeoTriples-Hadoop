@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Maven: com.esri:Shapefile_Reader:1.4.2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/esri/Shapefile_Reader/1.4.2/Shapefile_Reader-1.4.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/Shapefile_Reader/Shapefile_Reader-1.4.2-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/esri/Shapefile_Reader/1.4.2/Shapefile_Reader-1.4.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/Shapefile_Reader/Shapefile_Reader-1.4.2-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/esri/Shapefile_Reader/1.4.2/Shapefile_Reader-1.4.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

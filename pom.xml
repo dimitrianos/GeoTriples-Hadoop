@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>gr.uoa.di.geotriples.hadoop</groupId>
+    <artifactId>geotriples-hadoop</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <name>GeoTriples on top of Hadoop</name>
+
+    <modules>
+        <module>Hadoop_Implementation</module>
+        <module>Shapefile</module>
+    </modules>
+
+
+    <dependencies>
+
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+
+
+
+    </dependencies>
+</project>

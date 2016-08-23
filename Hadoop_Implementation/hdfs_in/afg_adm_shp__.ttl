@@ -1,0 +1,171 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix  rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@base <http://geotriples.eu/base> .
+@prefix rrx: <http://www.w3.org/ns/r2rml-ext#>.
+@prefix rrxf: <http://www.w3.org/ns/r2rml-ext/functions/def/>.
+@prefix ogc: <http://www.opengis.net/ont/geosparql#>.
+@prefix schema: <http://schema.org/>.
+@prefix onto: <http://geotriples-hadoop.di.uoa.gr/ontology#>.
+
+<#AFG_adm1>
+rml:logicalSource [
+	rml:source "/Users/admin/Downloads/AFG_adm_shp/AFG_adm1.shp";
+	rml:referenceFormulation ql:SHP;
+	rml:iterator "AFG_adm1";
+];
+rr:subjectMap [
+	rr:template "http://geotriples-hadoop.di.uoa.gr/AFG_adm1/id/{GeoTriplesID}";
+	rr:class onto:AFG_adm1;
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant onto:hasID_0 ];
+	rr:objectMap [
+		rr:datatype  xsd:long;
+		rml:reference "ID_0";
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant onto:hasISO ];
+	rr:objectMap [
+		rr:datatype  xsd:string;
+		rml:reference "ISO";
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant onto:hasNAME_0 ];
+	rr:objectMap [
+		rr:datatype  xsd:string;
+		rml:reference "NAME_0";
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant onto:hasID_1 ];
+	rr:objectMap [
+		rr:datatype  xsd:long;
+		rml:reference "ID_1";
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant onto:hasNAME_1 ];
+	rr:objectMap [
+		rr:datatype  xsd:string;
+		rml:reference "NAME_1";
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant onto:hasHASC_1 ];
+	rr:objectMap [
+		rr:datatype  xsd:string;
+		rml:reference "HASC_1";
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant onto:hasCCN_1 ];
+	rr:objectMap [
+		rr:datatype  xsd:long;
+		rml:reference "CCN_1";
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant onto:hasCCA_1 ];
+	rr:objectMap [
+		rr:datatype  xsd:string;
+		rml:reference "CCA_1";
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant onto:hasTYPE_1 ];
+	rr:objectMap [
+		rr:datatype  xsd:string;
+		rml:reference "TYPE_1";
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant onto:hasENGTYPE_1 ];
+	rr:objectMap [
+		rr:datatype  xsd:string;
+		rml:reference "ENGTYPE_1";
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant onto:hasNL_NAME_1 ];
+	rr:objectMap [
+		rr:datatype  xsd:string;
+		rml:reference "NL_NAME_1";
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant onto:hasVARNAME_1 ];
+	rr:objectMap [
+		rr:datatype  xsd:string;
+		rml:reference "VARNAME_1";
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant ogc:hasGeometry ];
+	rr:objectMap [
+		rr:template "http://geotriples-hadoop.di.uoa.gr/AFG_adm1/Geometry/{GeoTriplesID}";
+	];
+].
+
+<#AFG_adm1_Geometry>
+rml:logicalSource [
+	rml:source "/Users/admin/Downloads/AFG_adm_shp/AFG_adm1.shp";
+	rml:referenceFormulation ql:SHP;
+	rml:iterator "AFG_adm1";
+];
+rr:subjectMap [
+	rr:template "http://geotriples-hadoop.di.uoa.gr/AFG_adm1/Geometry/{GeoTriplesID}";
+	rr:class ogc:Geometry;
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant ogc:dimension ];
+	rr:objectMap [
+		rr:datatype  xsd:integer;
+		rrx:function rrxf:dimension;
+		rrx:argumentMap ( [ rml:reference "the_geom"; ] );
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant ogc:is3D ];
+	rr:objectMap [
+		rr:datatype  xsd:boolean;
+		rrx:function rrxf:is3D;
+		rrx:argumentMap ( [ rml:reference "the_geom"; ] );
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant ogc:isEmpty ];
+	rr:objectMap [
+		rr:datatype  xsd:boolean;
+		rrx:function rrxf:isEmpty;
+		rrx:argumentMap ( [ rml:reference "the_geom"; ] );
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant ogc:isSimple ];
+	rr:objectMap [
+		rr:datatype  xsd:boolean;
+		rrx:function rrxf:isSimple;
+		rrx:argumentMap ( [ rml:reference "the_geom"; ] );
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant ogc:coordinateDimension ];
+	rr:objectMap [
+		rr:datatype  xsd:integer;
+		rrx:function rrxf:coordinateDimension;
+		rrx:argumentMap ( [ rml:reference "the_geom"; ] );
+	];
+];
+rr:predicateObjectMap [
+	rr:predicateMap [ rr:constant ogc:spatialDimension ];
+	rr:objectMap [
+		rr:datatype  xsd:integer;
+		rrx:function rrxf:spatialDimension;
+		rrx:argumentMap ( [ rml:reference "the_geom"; ] );
+	];
+].
+

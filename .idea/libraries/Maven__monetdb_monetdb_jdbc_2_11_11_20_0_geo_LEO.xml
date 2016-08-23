@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: monetdb:monetdb-jdbc-2.11:11.20.0-geo-LEO">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/monetdb/monetdb-jdbc-2.11/11.20.0-geo-LEO/monetdb-jdbc-2.11-11.20.0-geo-LEO.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/monetdb/monetdb-jdbc-2.11/11.20.0-geo-LEO/monetdb-jdbc-2.11-11.20.0-geo-LEO-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/monetdb/monetdb-jdbc-2.11/11.20.0-geo-LEO/monetdb-jdbc-2.11-11.20.0-geo-LEO-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

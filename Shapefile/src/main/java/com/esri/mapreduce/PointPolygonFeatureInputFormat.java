@@ -3,8 +3,7 @@ package com.esri.mapreduce;
 
 import com.esri.io.PointPolygonFeatureWritable;
 import com.esri.jts_extras.PointorPolygon;
-
-import com.vividsolutions.jts.geom.Polygon;
+import com.esri.jts_extras.PointorMultiPolygon;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.InputSplit;
@@ -39,29 +38,56 @@ public class PointPolygonFeatureInputFormat extends AbstractInputFormat<PointPol
         protected void next() throws IOException
         {            
         
-            m_shpReader.PointorPolygon_Selector(m_pointpolygonFeatureWritable.point, m_pointpolygonFeatureWritable.polygon);
+            m_shpReader.PointorPolygon_Selector(m_pointpolygonFeatureWritable.point);
                
             //check the type of geometry on the record, query the geometry and set the right values
-            if(PointorPolygon.getPolygonorPoint_Shapetype()==5)
+//            if(PointorPolygon.getPolygonorPoint_Shapetype()==5)
+//            {
+//
+//                m_pointpolygonFeatureWritable.polygon = PointorPolygon.getPolygonPnorPl();
+//
+//                m_pointpolygonFeatureWritable.ShapeType_for_Hadoop=5;
+//
+//                putAttributes(m_pointpolygonFeatureWritable.attributes);
+//
+//            }
+//            else if(PointorPolygon.getPolygonorPoint_Shapetype()==1)
+//            {
+//
+//               m_pointpolygonFeatureWritable.point = PointorPolygon.getPointPnorPl();
+//
+//               m_pointpolygonFeatureWritable.ShapeType_for_Hadoop=1;
+//
+//               putAttributes(m_pointpolygonFeatureWritable.attributes);
+//
+//            }
+
+
+
+
+            if(PointorMultiPolygon.getMultiPolygonorPoint_Shapetype()==5)
             {
-            
-                m_pointpolygonFeatureWritable.polygon = PointorPolygon.getPolygonPnorPl();                        
-                               
+
+                m_pointpolygonFeatureWritable.multiPolygon = PointorMultiPolygon.getMultiPolygonPnorMlPl();
+
                 m_pointpolygonFeatureWritable.ShapeType_for_Hadoop=5;
-                
+
                 putAttributes(m_pointpolygonFeatureWritable.attributes);
-                
+
             }
-            else if(PointorPolygon.getPolygonorPoint_Shapetype()==1)
+            else if(PointorMultiPolygon.getMultiPolygonorPoint_Shapetype()==1)
             {
-                
-               m_pointpolygonFeatureWritable.point = PointorPolygon.getPointPnorPl();
-     
-               m_pointpolygonFeatureWritable.ShapeType_for_Hadoop=1;
-                
-               putAttributes(m_pointpolygonFeatureWritable.attributes);
-                              
+
+                m_pointpolygonFeatureWritable.point = PointorMultiPolygon.getPointPnorMlPl();
+
+                m_pointpolygonFeatureWritable.ShapeType_for_Hadoop=1;
+
+                putAttributes(m_pointpolygonFeatureWritable.attributes);
+
             }
+
+
+
       
             
         }

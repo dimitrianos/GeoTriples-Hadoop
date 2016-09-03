@@ -25,6 +25,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
@@ -83,7 +84,6 @@ import org.apache.hadoop.fs.Path;
 
 
 public class Testing_class
-
 {
 
     public static class ShapeFileMap extends
@@ -175,8 +175,8 @@ public class Testing_class
 
 
 
-
             for(TriplesMap tm : list_map){
+
 
                 processor = factory.create(tm.getLogicalSource().getReferenceFormulation());
 
@@ -197,7 +197,9 @@ public class Testing_class
                         //ShapeType_for_Hadoop==5 => Polygon
                         if(val.ShapeType_for_Hadoop==5){
 
-                            row.put("the_geom",val.polygon);
+
+                            row.put("the_geom",val.multiPolygon);
+
 
                         }
                         //ShapeType_for_Hadoop==1 => Point
@@ -213,8 +215,18 @@ public class Testing_class
                         e.printStackTrace();
                     }
 
+                long start=System.nanoTime();
+
+
+
                 Collection<Statement> statements = performer.perform(row, outputDataSet,tm);
 
+
+
+                long end=System.nanoTime();
+                long duration =end -start;
+
+                System.out.println(duration /1000000.0 + " ms");
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 RDFWriter rdfWriter = Rio.createWriter(format,stream);
 
@@ -265,43 +277,327 @@ public class Testing_class
 
 
 
-
-//    public static class PointMap extends
-//            Mapper<LongWritable, PointFeatureWritable, NullWritable, Writable> {
-//        private final static Text NAME = new Text("PERIGRAFH");
+////csv
+//    public static class CsvFileMap extends
+//            Mapper<LongWritable, Text, NullWritable, Writable> {
+//
 //
 //        private final Text m_text = new Text();
-//        private final Envelope m_envelope = new Envelope();
-//        //private Point center = new Point();
 //
+//        private List<String> field_titles;
 //
+//        private List<String> field_values;
+//
+//        private String m;
+//
+//        private byte[] valueDecoded;
+//
+//        private Map<String,KeyGenerator> keygens = new HashMap<String,KeyGenerator>();
+//
+//        private RMLProcessorFactory factory = new ConcreteRMLProcessorFactory();
+//
+//        private RMLProcessor processor;
+//
+//        private NodeRMLPerformer performer;
+//
+//        private List<TriplesMap> list_map;
+//
+//        private RDFFormat format = RDFFormat.NTRIPLES;
+//
+//        private SesameDataSet outputDataSet = new SesameDataSet();
+//
+//        private int k=0;
 //
 //
 //        public void map(
 //                final LongWritable key,
-//                final PointFeatureWritable val,
+//                final Text val,
 //                final Context context) throws IOException, InterruptedException {
 //
-//           // val.point.queryEnvelope(m_envelope);
-//           // center=m_envelope.getCenter();
 //
-//           // m_text.set(String.format("%.6f %.6f %s",
-//           //         center.getX(), center.getY(), val.attributes.get(NAME).toString()));
+//            String line = val.toString();
 //
-//            final Collection<Writable> values = val.attributes.values();
+//            long key_value=key.get();
 //
 //
+//            //read titles on first line
+//            if(key_value==0) {
+//
+//                //input filename to used on geotriples id's
+//                String filename = ((FileSplit) context.getInputSplit()).getPath().getName();
+//
+//                eu.linkedeodata.geotriples.Config.variables.put("filename",filename);
 //
 //
-//            m_text.set(String.format("%.6f %.6f %s",
-//                    val.point.getX(), val.point.getY(), values.toString()));
+//                field_titles = Arrays.asList(line.split(","));
+//
+//                //read the mapping file (deserialize)
+//                Configuration conf = context.getConfiguration();
+//
+//                m = conf.get("triplemap");
+//
+//                valueDecoded = Base64.decodeBase64(m.getBytes());
+//
+//                try {
+//
+//                    ObjectInputStream si = new ObjectInputStream( new ByteArrayInputStream(valueDecoded) );
+//
+//                    list_map = (List<TriplesMap>) si.readObject();
+//
+//                    for(TriplesMap tm:list_map) {
+//
+//                        keygens.put(tm.getName(),new KeyGenerator());
+//
+//                    }
+//
+//                } catch (Exception e) {
+//
+//                    System.out.println(e);
+//
+//                }
+//
+//                k++;
 //
 //
-//            context.write(NullWritable.get(), m_text);
+//            }
+//            else {
+//
+//
+//                for(TriplesMap tm : list_map){
+//
+//                    processor = factory.create(tm.getLogicalSource().getReferenceFormulation());
+//
+//                    performer = new NodeRMLPerformer(processor);
+//
+//                    HashMap<String, Object> row = new HashMap();
+//
+//                    try {
+//
+//                        //write the attribute's titles and values
+//                        field_values = Arrays.asList(line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"));
+//
+//
+//                        int field_titles_index = 0;
+//
+//
+//                        for(String a : field_titles) {
+//
+//                            //row.put(a,field_values.get(field_titles_index));
+//                            row.put(a,field_values.get(field_titles_index).replaceAll("\"",""));
+//
+//                            field_titles_index++;
+//
+//                        }
+//
+//                        row.put(Config.GEOTRIPLES_AUTO_ID,keygens.get(tm.getName()).Generate());
+//
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//
+//
+//                    Collection<Statement> statements = performer.perform(row, outputDataSet,tm);
+//
+//                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//                    RDFWriter rdfWriter = Rio.createWriter(format,stream);
+//
+//
+//                    try {
+//
+//                        rdfWriter.startRDF();
+//
+//
+//                        for(Statement st : statements){
+//
+//                            rdfWriter.handleStatement(st);
+//
+//                        }
+//
+//                        rdfWriter.endRDF();
+//
+//                        m_text.set(stream.toString());
+//
+//                        context.write(NullWritable.get(), m_text);
+//
+//                    } catch (RDFHandlerException e) {
+//
+//
+//                        e.printStackTrace();
+//                    }
+//
+//
+//                }
+//
+//            }
+//
+//
 //        }
 //    }
 
 
+
+    //csv_with bufferer reader
+    public static class CsvFileMap extends
+            Mapper<LongWritable, Text, NullWritable, Writable> {
+
+
+        private final Text m_text = new Text();
+
+        private List<String> field_titles;
+
+        private List<String> field_values;
+
+        private String m;
+
+        private String header_values;
+
+        private byte[] valueDecoded;
+
+        private Map<String,KeyGenerator> keygens = new HashMap<String,KeyGenerator>();
+
+        private RMLProcessorFactory factory = new ConcreteRMLProcessorFactory();
+
+        private RMLProcessor processor;
+
+        private NodeRMLPerformer performer;
+
+        private List<TriplesMap> list_map;
+
+        private RDFFormat format = RDFFormat.NTRIPLES;
+
+        private SesameDataSet outputDataSet = new SesameDataSet();
+
+        private int k=0;
+
+
+        public void map(
+                final LongWritable key,
+                final Text val,
+                final Context context) throws IOException, InterruptedException {
+
+
+            String line = val.toString();
+
+            //ignore line with headers
+
+            long key_value = key.get();
+
+            if (key_value != 0) {
+
+                //read titles and triples map
+                if (k == 0) {
+
+                    //input filename to used on geotriples id's
+                    String filename = ((FileSplit) context.getInputSplit()).getPath().getName();
+
+                    eu.linkedeodata.geotriples.Config.variables.put("filename", filename);
+
+
+                    //read the mapping file (deserialize) and headers
+                    Configuration conf = context.getConfiguration();
+
+                    header_values = conf.get("header_values");
+
+                    field_titles = Arrays.asList(header_values.split(","));
+
+                    m = conf.get("triplemap");
+
+                    valueDecoded = Base64.decodeBase64(m.getBytes());
+
+                    try {
+
+                        ObjectInputStream si = new ObjectInputStream(new ByteArrayInputStream(valueDecoded));
+
+                        list_map = (List<TriplesMap>) si.readObject();
+
+                        for (TriplesMap tm : list_map) {
+
+                            keygens.put(tm.getName(), new KeyGenerator());
+
+                        }
+
+                    } catch (Exception e) {
+
+                        System.out.println(e);
+
+                    }
+
+                    k++;
+
+
+                }
+
+
+                for (TriplesMap tm : list_map) {
+
+                    processor = factory.create(tm.getLogicalSource().getReferenceFormulation());
+
+                    performer = new NodeRMLPerformer(processor);
+
+                    HashMap<String, Object> row = new HashMap();
+
+                    try {
+
+                        //write the attribute's titles and values
+                        field_values = Arrays.asList(line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"));
+
+
+                        int field_titles_index = 0;
+
+
+                        for (String a : field_titles) {
+
+                            //row.put(a,field_values.get(field_titles_index));
+                            row.put(a, field_values.get(field_titles_index).replaceAll("\"", ""));
+
+                            field_titles_index++;
+
+                        }
+
+                        row.put(Config.GEOTRIPLES_AUTO_ID, keygens.get(tm.getName()).Generate());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                    Collection<Statement> statements = performer.perform(row, outputDataSet, tm);
+
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    RDFWriter rdfWriter = Rio.createWriter(format, stream);
+
+
+                    try {
+
+                        rdfWriter.startRDF();
+
+
+                        for (Statement st : statements) {
+
+                            rdfWriter.handleStatement(st);
+
+                        }
+
+                        rdfWriter.endRDF();
+
+                        m_text.set(stream.toString());
+
+                        context.write(NullWritable.get(), m_text);
+
+                    } catch (RDFHandlerException e) {
+
+
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+            }
+
+
+        }
+    }
 
 
 
@@ -348,15 +644,15 @@ public class Testing_class
 
 
             //an eimaste se perivallon gia peiramata sto hdfs tote exoume to parakatw block kwdika
-//            Configuration conf = new Configuration();
-//            FileSystem fs = FileSystem.get(conf);
-//            Path inFile = new Path("hdfs://hadoop-p2-1:9000/hadoop/afg_adm_shp.ttl");
-//            FSDataInputStream in = fs.open(inFile);
-//            RMLMapping mapping = RMLMappingFactory.extractRMLMapping(in);
+            Configuration conf = new Configuration();
+            FileSystem fs = FileSystem.get(conf);
+            Path inFile = new Path("hdfs://hadoop-p2-1:9000/hadoop/afg_adm_shp.ttl");
+            FSDataInputStream in = fs.open(inFile);
+            RMLMapping mapping = RMLMappingFactory.extractRMLMapping(in);
 
             //an trexoume se pseudodistributed xwris pragmatiko hdfs trexoume to parakatw
-            RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
-
+           // RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
+            //RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/4326_csv.txt");
 
 
             Config.EPSG_CODE = "4326";
@@ -408,6 +704,9 @@ public class Testing_class
 //
 //        System.out.println("GGGGGGGGGG " + conf.get("var1"));
 
+
+
+        //Shapefile
         Job job = Job.getInstance(conf, "word count");
 
         job.setJarByClass(Testing_class.class);
@@ -425,14 +724,78 @@ public class Testing_class
         job.setOutputFormatClass(TextOutputFormat.class);
 
 
+        //csv
+//         Job job = Job.getInstance(conf, "word count");
+//
+//        job.setJarByClass(Testing_class.class);
+//        job.setMapperClass(CsvFileMap.class);
+//
+//        job.setMapOutputKeyClass(NullWritable.class);
+//        job.setMapOutputValueClass(Text.class);
+//
+//        job.setNumReduceTasks(1);
+//
+//        job.setCombinerClass(ShapeFileReduce.class);
+//        job.setReducerClass(ShapeFileReduce.class);
+//
+//        job.setInputFormatClass(TextInputFormat.class);
+//        job.setOutputFormatClass(TextOutputFormat.class);
+
+
+//        //csv with buffered reader
+//
+//        File folder = new File("Hadoop_Implementation/input");
+//        File[] listOfFiles = folder.listFiles();
+//
+////        for (int i = 0; i < listOfFiles.length; i++) {
+////            if (listOfFiles[i].isFile()) {
+////                System.out.println("File " + listOfFiles[i].getName());
+////            } else if (listOfFiles[i].isDirectory()) {
+////                System.out.println("Directory " + listOfFiles[i].getName());
+////            }
+////        }
+//
+//
+//        String filename = listOfFiles[0].getName();
+//
+//        BufferedReader br = new BufferedReader(new FileReader("Hadoop_Implementation/input/"+filename));
+//
+//        String header_values = br.readLine();
+//
+//
+//
+//        conf.set("header_values",header_values);
+//
+//
+//        Job job = Job.getInstance(conf, "word count");
+//
+//        job.setJarByClass(Testing_class.class);
+//        job.setMapperClass(CsvFileMap.class);
+//
+//        job.setMapOutputKeyClass(NullWritable.class);
+//        job.setMapOutputValueClass(Text.class);
+//
+//        job.setNumReduceTasks(1);
+//
+//        job.setCombinerClass(ShapeFileReduce.class);
+//        job.setReducerClass(ShapeFileReduce.class);
+//
+//        job.setInputFormatClass(TextInputFormat.class);
+//        job.setOutputFormatClass(TextOutputFormat.class);
+
+
+
+
+
+
         //local
-        FileInputFormat.addInputPath(job, new Path("Hadoop_Implementation/input"));
-        FileInputFormat.setInputDirRecursive(job,true);
-        FileOutputFormat.setOutputPath(job, new Path("Hadoop_Implementation/output"));
+//        FileInputFormat.addInputPath(job, new Path("Hadoop_Implementation/input"));
+//        //FileInputFormat.setInputDirRecursive(job,true);
+//        FileOutputFormat.setOutputPath(job, new Path("Hadoop_Implementation/output"));
 
         //hdfs
-       // FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/input"));
-       // FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/output"));
+        FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/input"));
+        FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/output"));
 
 
 

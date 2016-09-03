@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2875454f-bff3-4eee-974c-974d0d501262" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/target/classes/Testing_class$ShapeFileMap.class" afterPath="$PROJECT_DIR$/Hadoop_Implementation/target/classes/Testing_class$ShapeFileMap.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/target/classes/Testing_class$ShapeFileReduce.class" afterPath="$PROJECT_DIR$/Hadoop_Implementation/target/classes/Testing_class$ShapeFileReduce.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/target/classes/Testing_class.class" afterPath="$PROJECT_DIR$/Hadoop_Implementation/target/classes/Testing_class.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Testing_class.java" afterPath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Testing_class.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointPolygonWritable.java" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointPolygonWritable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PointPolygonFeatureInputFormat.java" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PointPolygonFeatureInputFormat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java" />
     </list>
     <ignored path="hadoop_3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -654,6 +647,14 @@
       <option name="presentableId" value="Default" />
       <updated>1463851145625</updated>
     </task>
+    <task id="LOCAL-00001" summary="Update Version">
+      <created>1472906381161</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1472906381161</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -733,7 +734,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Update Version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

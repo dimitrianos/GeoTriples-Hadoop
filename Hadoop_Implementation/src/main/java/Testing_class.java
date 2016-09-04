@@ -189,7 +189,12 @@ public class Testing_class
                         //write the attribute's titles
                         for(String a : field_titles) {
 
-                            row.put(a,val.attributes.getText(a));
+                            String field_value = val.attributes.getText(a).replaceAll("\\s+$", "");
+
+                            //System.out.print("VAlUE : " + field_value);
+
+                            //row.put(a,val.attributes.getText(a));
+                            row.put(a,field_value);
 
                         }
 
@@ -644,14 +649,14 @@ public class Testing_class
 
 
             //an eimaste se perivallon gia peiramata sto hdfs tote exoume to parakatw block kwdika
-            Configuration conf = new Configuration();
-            FileSystem fs = FileSystem.get(conf);
-            Path inFile = new Path("hdfs://hadoop-p2-1:9000/hadoop/afg_adm_shp.ttl");
-            FSDataInputStream in = fs.open(inFile);
-            RMLMapping mapping = RMLMappingFactory.extractRMLMapping(in);
+//            Configuration conf = new Configuration();
+//            FileSystem fs = FileSystem.get(conf);
+//            Path inFile = new Path("hdfs://hadoop-p2-1:9000/hadoop/afg_adm_shp.ttl");
+//            FSDataInputStream in = fs.open(inFile);
+//            RMLMapping mapping = RMLMappingFactory.extractRMLMapping(in);
 
             //an trexoume se pseudodistributed xwris pragmatiko hdfs trexoume to parakatw
-           // RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
+            RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
             //RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/4326_csv.txt");
 
 
@@ -789,13 +794,13 @@ public class Testing_class
 
 
         //local
-//        FileInputFormat.addInputPath(job, new Path("Hadoop_Implementation/input"));
-//        //FileInputFormat.setInputDirRecursive(job,true);
-//        FileOutputFormat.setOutputPath(job, new Path("Hadoop_Implementation/output"));
+        FileInputFormat.addInputPath(job, new Path("Hadoop_Implementation/input"));
+        //FileInputFormat.setInputDirRecursive(job,true);
+        FileOutputFormat.setOutputPath(job, new Path("Hadoop_Implementation/output"));
 
         //hdfs
-        FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/input"));
-        FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/output"));
+//        FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/input"));
+//        FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/output"));
 
 
 

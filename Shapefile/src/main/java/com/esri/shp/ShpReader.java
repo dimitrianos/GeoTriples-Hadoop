@@ -3,15 +3,10 @@ package com.esri.shp;
 
 
 import com.esri.jts_extras.JtsMultiPolygon;
-import com.esri.jts_extras.JtsPolygon;
-import com.esri.jts_extras.PointorPolygon;
 import com.esri.jts_extras.PointorMultiPolygon;
 
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
-
-import com.esri.io.PolylineMWritable;
-
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateFilter;
 import com.vividsolutions.jts.geom.CoordinateSequence;
@@ -19,7 +14,6 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.MultiPolygon;
-
 
 import org.apache.commons.io.EndianUtils;
 
@@ -81,7 +75,7 @@ public class ShpReader implements Serializable
     }
 
     //a fuction that decides the geometry type of the record and sets the right values
-    public void PointorPolygon_Selector(final Point point) throws IOException
+    public void PointorMultiPolygon_Selector(final Point point) throws IOException
     {
         
         readRecordHeader();             
@@ -119,10 +113,6 @@ public class ShpReader implements Serializable
                 }
 
             });
-            
-            PointorPolygon.setPointPnorPl(point);
-            PointorPolygon.setPolygonPnorPl(null);
-            PointorPolygon.setPolygonorPoint_Shapetype(shapeType);
 
             PointorMultiPolygon.setPointPnorMlPl(point);
             PointorMultiPolygon.setMultiPolygonPnorMlPl(null);
@@ -130,22 +120,21 @@ public class ShpReader implements Serializable
             
             
         }
-        //shapeType==5 => Polygon
+        //shapeType==5 => MultiPolygon
         else if(shapeType==5)
         {
 
             readShapeHeader();
 
-            List<polygons_list> pll_list_test = new ArrayList<polygons_list>();
+            List<polygons_list> pll_list = new ArrayList<polygons_list>();
 
-            System.out.println("START TEST" + numParts);
             for (int i = 0, j = 1; i < numParts; )
             {
 
 
                 final int count = m_parts[j++] - m_parts[i++];
 
-                Coordinate[] coords_test  = new Coordinate[count];
+                Coordinate[] coords  = new Coordinate[count];
 
                 for (int c = 0; c < count; c++)
                 {
@@ -153,22 +142,22 @@ public class ShpReader implements Serializable
                     final double y = EndianUtils.readSwappedDouble(m_dataInputStream);
                     if (c > 0)
                     {
-                        coords_test[c] =  new Coordinate(x,y);
+                        coords[c] =  new Coordinate(x,y);
                     }
                     else
                     {
-                        coords_test[c] =  new Coordinate(x,y);
+                        coords[c] =  new Coordinate(x,y);
                     }
                 }
 
-                GeometryFactory gf_test=new GeometryFactory();
+                GeometryFactory gf=new GeometryFactory();
 
-                LineString lineString = gf_test.createLineString(coords_test);
+                LineString lineString = gf.createLineString(coords);
 
-                LinearRing ring_test= null;
+                LinearRing ring= null;
 
                 if( lineString.isClosed() )
-                    ring_test = gf_test.createLinearRing( coords_test );
+                    ring = gf.createLinearRing(coords);
                 else {
                     CoordinateSequence sequence = lineString.getCoordinateSequence();
                     Coordinate array[] = new Coordinate[ sequence.size() + 1 ];
@@ -177,29 +166,29 @@ public class ShpReader implements Serializable
 
                         array[n] = sequence.getCoordinate(n);
                         array[array.length-1] = sequence.getCoordinate(0);
-                        ring_test = gf_test.createLinearRing( array );
+                        ring = gf.createLinearRing( array );
 
                     }
                 }
 
 
-                LinearRing holes_test[] = null;
+                LinearRing holes[] = null;
 
-                Polygon polygon_test = gf_test.createPolygon(ring_test, holes_test);
+                Polygon polygon = gf.createPolygon(ring, holes);
 
                 polygons_list pol_l = new polygons_list();
-                pol_l.pll = polygon_test;
-                pll_list_test.add(pol_l);
+                pol_l.pll = polygon;
+                pll_list.add(pol_l);
 
             }
 
-            Polygon[] polygonSet = new Polygon[pll_list_test.size()];
+            Polygon[] polygonSet = new Polygon[pll_list.size()];
 
 
             GeometryFactory multi_factory = new GeometryFactory();
 
             int k=0;
-            for(polygons_list i : pll_list_test){
+            for(polygons_list i : pll_list){
 
                 polygonSet[k] = i.pll;
 
@@ -210,11 +199,6 @@ public class ShpReader implements Serializable
 
             MultiPolygon multiPolygon = new MultiPolygon(polygonSet, multi_factory);
 
-            System.out.println("CEEEENTER" + multiPolygon.getCentroid());
-
-            System.out.println("FInish TEST");
-
-
             JtsMultiPolygon mljtspl = new JtsMultiPolygon();
 
             mljtspl.set_my_multi_polygon(multiPolygon);
@@ -224,442 +208,18 @@ public class ShpReader implements Serializable
             PointorMultiPolygon.setMultiPolygonorPoint_Shapetype(shapeType);
 
 
-         //   System.exit(0);
-
-
-
-
-
-
-//            List<coordslist> cl_list = new ArrayList<coordslist>();
-//            List<list_of_coordslist> list_of_cl = new ArrayList<list_of_coordslist>();
-//
-//            System.out.println("START " + numParts);
-//            for (int i = 0, j = 1; i < numParts; )
-//            {
-//                final int count = m_parts[j++] - m_parts[i++];
-//
-//                System.out.println("Count " + count);
-//
-//                for (int c = 0; c < count; c++)
-//                {
-//                    final double x = EndianUtils.readSwappedDouble(m_dataInputStream);
-//                    final double y = EndianUtils.readSwappedDouble(m_dataInputStream);
-//
-//                    if (c > 0)
-//                    {
-//                        //System.out.println("IFIFIFIFIF");
-//                        coordslist cl=new coordslist();
-//                        cl.coord_x=x;
-//                        cl.coord_y=y;
-//                        cl_list.add(cl);
-//
-//
-//                    }
-//                    else
-//                    {
-//                        //System.out.println("ELSEELSEELSEELSEELSE");
-//                        //list with coordinates of all polygons
-//                        list_of_coordslist locl = new list_of_coordslist();
-//                        locl.setCl(cl_list);
-//                        list_of_cl.add(locl);
-//
-//
-//                        cl_list.removeAll(cl_list);
-//                        coordslist cl=new coordslist();
-//                        cl.coord_x=x;
-//                        cl.coord_y=y;
-//                        cl_list.add(cl);
-//
-//                    }
-//
-//
-//
-//                }
-//            }
-//
-//            System.out.println("FINISH");
-//
-//            //Get the outer polygon
-//
-//            List<polygons_list> pll_list = new ArrayList<polygons_list>();
-//
-//            for(list_of_coordslist i : list_of_cl){
-//
-//                int c = i.cl.size();
-//
-//                Coordinate[] coords  = new Coordinate[c];
-//
-//                int counter=0;
-//
-//                for(coordslist j : i.cl ){
-//
-//                    coords[counter] =  new Coordinate(j.coord_x,j.coord_y);
-//
-//                    counter++;
-//
-//                }
-//
-//                GeometryFactory gf=new GeometryFactory();
-//
-//                LineString lineString = gf.createLineString(coords);
-//
-//                LinearRing ring = null;
-//
-//                if( lineString.isClosed() )
-//                ring = gf.createLinearRing( coords );
-//                else {
-//                CoordinateSequence sequence = lineString.getCoordinateSequence();
-//                Coordinate array[] = new Coordinate[ sequence.size() + 1 ];
-//
-//                for( int n=0; n<sequence.size();n++){
-//
-//                    array[n] = sequence.getCoordinate(n);
-//                    array[array.length-1] = sequence.getCoordinate(0);
-//                    ring = gf.createLinearRing( array );
-//
-//                    }
-//                }
-//
-//
-//                 LinearRing holes[] = null;
-//
-//                 Polygon polygon_1 = gf.createPolygon(ring, holes);
-//
-//                 polygons_list pol_l = new polygons_list();
-//                 pol_l.pll = polygon_1;
-//                 pll_list.add(pol_l);
-//
-//            }
-//
-//            double max_polygon=0;
-//
-//            Polygon polygon_last;
-//
-//            GeometryFactory gf=new GeometryFactory();
-//
-//            Coordinate[] coords  =
-//              new Coordinate[] {new Coordinate(1, 0), new Coordinate(10, 0),
-//                                new Coordinate(10, 10),  new Coordinate(1,0)};
-//
-//            LinearRing ring = gf.createLinearRing( coords );
-//
-//            LinearRing holes[] = null;
-//
-//
-//            polygon_last = gf.createPolygon(ring, holes);
-//
-//            for(polygons_list i : pll_list){
-//
-//                if(i.pll.getArea() > max_polygon){
-//
-//                    max_polygon = i.pll.getArea();
-//                    polygon_last = i.pll;
-//
-//                }
-//
-//
-//            }
-
-
-
-            Polygon polygon_last;
-
-            GeometryFactory gf=new GeometryFactory();
-
-            Coordinate[] coords  =
-                    new Coordinate[] {new Coordinate(1, 0), new Coordinate(10, 0),
-                            new Coordinate(10, 10),  new Coordinate(1,0)};
-
-            LinearRing ring = gf.createLinearRing( coords );
-
-            LinearRing holes[] = null;
-
-
-            polygon_last = gf.createPolygon(ring, holes);
-
-
-
-
-            JtsPolygon jtspl = new JtsPolygon();
-
-            jtspl.set_my_polygon(polygon_last);
-
-            PointorPolygon.setPointPnorPl(null);
-            PointorPolygon.setPolygonPnorPl(polygon_last);
-            PointorPolygon.setPolygonorPoint_Shapetype(shapeType);
-
-
         }
         else
         {
 
-            PointorPolygon.setPointPnorPl(null);
-            PointorPolygon.setPolygonPnorPl(null);
-            PointorPolygon.setPolygonorPoint_Shapetype(0);
+            PointorMultiPolygon.setPointPnorMlPl(null);
+            PointorMultiPolygon.setMultiPolygonPnorMlPl(null);
+            PointorMultiPolygon.setMultiPolygonorPoint_Shapetype(0);
 
         }
             
     }
-    
 
-    public Point readPoint() throws IOException
-    {
-        //create a point
-        GeometryFactory gf = new GeometryFactory();
-
-        Coordinate coord = new Coordinate(-99.79634094297234,39.486310278100405);
-             
-        Point point = gf.createPoint(coord);
-
-        return queryPoint(point);
-        
-    }
-    
-    
-    
-    
-
-    public Polygon readPolygon() throws IOException
-    {
-        
-        //create a polygon
-        GeometryFactory gf=new GeometryFactory();
-        
-        Coordinate[] coords  =
-            new Coordinate[] {new Coordinate(0, 0), new Coordinate(10, 0),
-                          new Coordinate(10, 10), new Coordinate(0,0) };
-
-        LinearRing ring = gf.createLinearRing(coords);
-        LinearRing holes[] = null;
-        Polygon polygon = gf.createPolygon(ring, holes);
-
-        
-        return queryPolygon(polygon);
-        
-    }
-     
-        
-        
-   
-
-    public Point queryPoint(final Point point) throws IOException
-    {
-        
-        readRecordHeader();
-        
-        
-        point.apply(new CoordinateFilter() {
-        
-            @Override
-            public void filter(Coordinate coord) {
-
-                try {
-
-                    coord.x = EndianUtils.readSwappedDouble(m_dataInputStream);
-
-                } catch (IOException ex) {
-
-                    Logger.getLogger(ShpReader.class.getName()).log(Level.SEVERE, null, ex);
-
-                }
-
-                try {
-
-                    coord.y =EndianUtils.readSwappedDouble(m_dataInputStream);
-
-                } catch (IOException ex) {
-
-                    Logger.getLogger(ShpReader.class.getName()).log(Level.SEVERE, null, ex);
-
-                }
-
-
-            }
-
-        });
-        
-        return point;
-        
-    }
-
-    
-    
-    public Polygon queryPolygon(final Polygon polygon) throws IOException
-    {
-     
-        readRecordHeader();
-
-        readShapeHeader();
-        
-        List<coordslist> cl_list = new ArrayList<coordslist>();
-        List<list_of_coordslist> list_of_cl = new ArrayList<list_of_coordslist>();
-        
-        for (int i = 0, j = 1; i < numParts; )
-        {
-            final int count = m_parts[j++] - m_parts[i++];
-            for (int c = 0; c < count; c++)
-            {
-                final double x = EndianUtils.readSwappedDouble(m_dataInputStream);
-                final double y = EndianUtils.readSwappedDouble(m_dataInputStream);
-                
-                if (c > 0)
-                {
-                    
-                    coordslist cl=new coordslist();
-                    cl.coord_x=x;
-                    cl.coord_y=y;
-                    cl_list.add(cl);
-                    
-                
-                }
-                else
-                {
-                    //list with coordinates of all polygons
-                    list_of_coordslist locl = new list_of_coordslist();
-                    locl.setCl(cl_list);
-                    list_of_cl.add(locl);
-                    
-                    
-                    cl_list.removeAll(cl_list);
-                    coordslist cl=new coordslist();
-                    cl.coord_x=x;
-                    cl.coord_y=y;
-                    cl_list.add(cl);
-                
-                }
-                
-                
-             
-            }
-        }
-                
-        
-        //Get the outer polygon        
-        List<polygons_list> pll_list = new ArrayList<polygons_list>();
-                                 
-        for(list_of_coordslist i : list_of_cl){
-        
-            int c = i.cl.size();
-            
-            Coordinate[] coords  = new Coordinate[c];
-            
-            int counter=0;
-            
-            for(coordslist j : i.cl ){
-            
-                coords[counter] =  new Coordinate(j.coord_x,j.coord_y);
-                     
-                counter++;
-            
-            }
-            
-            GeometryFactory gf=new GeometryFactory();
-        
-            LineString lineString = gf.createLineString(coords);
-            
-            LinearRing ring = null;
-
-            if( lineString.isClosed() )
-            ring = gf.createLinearRing( coords );
-            else {
-            CoordinateSequence sequence = lineString.getCoordinateSequence();
-            Coordinate array[] = new Coordinate[ sequence.size() + 1 ];
-             
-            for( int n=0; n<sequence.size();n++){
-                
-                array[n] = sequence.getCoordinate(n);
-                array[array.length-1] = sequence.getCoordinate(0);
-                ring = gf.createLinearRing( array );
-                
-                }
-            }
-            
-            
-            LinearRing holes[] = null;
-        
-            Polygon polygon_1 = gf.createPolygon(ring, holes);
-             
-            polygons_list pol_l = new polygons_list();
-            pol_l.pll = polygon_1;
-            pll_list.add(pol_l);
-            
-        }
-        
-        double max_polygon=0;
-        
-        Polygon polygon_last;
-        
-        GeometryFactory gf=new GeometryFactory();
-        
-        Coordinate[] coords  =
-            new Coordinate[] {new Coordinate(1, 0), new Coordinate(10, 0),
-                            new Coordinate(10, 10),  new Coordinate(1,0)};
-            
-        LinearRing ring = gf.createLinearRing( coords );
-        LinearRing holes[] = null;
-        
-    
-        polygon_last = gf.createPolygon(ring, holes);
-        
-        
-        for(polygons_list i : pll_list){
-        
-            if(i.pll.getArea() > max_polygon){
-            
-                max_polygon = i.pll.getArea();
-                polygon_last = i.pll;
-                
-            }         
-                        
-        }
-        
-        JtsPolygon jstpl = new JtsPolygon();
-        
-        jstpl.set_my_polygon(polygon_last);
-        
-        
-         
-        return polygon_last;
-        
-        //Get the outer polygon end
-
-    }
-
-    public PolylineMWritable readPolylineMWritable() throws IOException
-    {
-        final PolylineMWritable polylineMWritable = new PolylineMWritable();
-
-        readRecordHeader();
-        readShapeHeader();
-
-        polylineMWritable.lens = new int[numParts];
-        polylineMWritable.x = new double[numPoints];
-        polylineMWritable.y = new double[numPoints];
-        polylineMWritable.m = new double[numPoints];
-
-        int p = 0;
-        for (int i = 0, j = 1; i < numParts; i++, j++)
-        {
-            final int count = m_parts[j] - m_parts[i];
-            polylineMWritable.lens[i] = count;
-            for (int c = 0; c < count; c++, p++)
-            {
-                polylineMWritable.x[p] = EndianUtils.readSwappedDouble(m_dataInputStream);
-                polylineMWritable.y[p] = EndianUtils.readSwappedDouble(m_dataInputStream);
-            }
-        }
-
-        mmin = EndianUtils.readSwappedDouble(m_dataInputStream);
-        mmax = EndianUtils.readSwappedDouble(m_dataInputStream);
-
-        for (p = 0; p < numPoints; p++)
-        {
-            polylineMWritable.m[p] = EndianUtils.readSwappedDouble(m_dataInputStream);
-        }
-
-        return polylineMWritable;
-    }
 
     private void readShapeHeader() throws IOException
     {
@@ -682,60 +242,12 @@ public class ShpReader implements Serializable
         m_parts[numParts] = numPoints;
     }
     
-    
-    public class coordslist{
-    
-        private double coord_x;
-        
-        private double coord_y;
 
-        public double getCoord_x() {
-            return coord_x;
-        }
-
-        public void setCoord_x(double coord_x) {
-            this.coord_x = coord_x;
-        }
-
-        public double getCoord_y() {
-            return coord_y;
-        }
-
-        public void setCoord_y(double coord_y) {
-            this.coord_y = coord_y;
-        } 
-        
-    }
-    
-    
-    public class list_of_coordslist{
-    
-        private List<coordslist> cl;
-
-        public List<coordslist> getCl() {
-            return cl;
-        }
-
-        public void setCl(List<coordslist> cl) {
-            this.cl = cl;
-        }  
-               
-    }
-    
-    
     
     public class polygons_list{
-    
+
         private Polygon pll;
 
-        public Polygon getPll() {
-            return pll;
-        }
-
-        public void setPll(Polygon pll) {
-            this.pll = pll;
-        }        
-               
     }
 
 }

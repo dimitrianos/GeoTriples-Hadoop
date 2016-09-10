@@ -7,13 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2875454f-bff3-4eee-974c-974d0d501262" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Hadoop_Implementation_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/META-INF/MANIFEST.MF" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/target/Hadoop_Implementation-1.0-SNAPSHOT.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/target/maven-archiver/pom.properties" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" afterPath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/META-INF/MANIFEST.MF" />
     </list>
     <ignored path="hadoop_3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,11 +40,11 @@
       <file leaf-file-name="Hadoop_Implementation_class.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="711" column="90" selection-start-line="711" selection-start-column="90" selection-end-line="711" selection-end-column="90" />
+            <state relative-caret-position="252">
+              <caret line="716" column="58" selection-start-line="716" selection-start-column="58" selection-end-line="716" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1473528331468" expanded="false" signature="8066:8087" placeholder="&lt;~&gt;" />
+                <marker date="1473529228389" expanded="false" signature="8066:8087" placeholder="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -577,7 +574,21 @@
       <option name="project" value="LOCAL" />
       <updated>1473522738294</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Updated Version">
+      <created>1473528391716</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1473528391716</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Updated Version">
+      <created>1473528831189</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1473528831189</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -883,11 +894,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="711" column="90" selection-start-line="711" selection-start-column="90" selection-end-line="711" selection-end-column="90" />
+        <state relative-caret-position="252">
+          <caret line="716" column="58" selection-start-line="716" selection-start-column="58" selection-end-line="716" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1473528331468" expanded="false" signature="8066:8087" placeholder="&lt;~&gt;" />
+            <marker date="1473529228389" expanded="false" signature="8066:8087" placeholder="&lt;~&gt;" />
           </folding>
         </state>
       </provider>

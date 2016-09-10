@@ -627,15 +627,15 @@ public class Hadoop_Implementation_class
 
 
             //an eimaste se perivallon gia peiramata sto hdfs tote exoume to parakatw block kwdika
-            Configuration conf = new Configuration();
-            FileSystem fs = FileSystem.get(conf);
-            Path inFile = new Path("hdfs://hadoop-p2-1:9000/hadoop/afg_adm_shp.ttl");
-            FSDataInputStream in = fs.open(inFile);
-            RMLMapping mapping = RMLMappingFactory.extractRMLMapping(in);
+//            Configuration conf = new Configuration();
+//            FileSystem fs = FileSystem.get(conf);
+//            Path inFile = new Path("hdfs://hadoop-p2-1:9000/hadoop/afg_adm_shp.ttl");
+//            FSDataInputStream in = fs.open(inFile);
+//            RMLMapping mapping = RMLMappingFactory.extractRMLMapping(in);
 
             //an trexoume se pseudodistributed xwris pragmatiko hdfs trexoume to parakatw
-           // RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
-            //RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/4326_csv.txt");
+            RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
+           // RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/4326_csv.txt");
 
 
             Config.EPSG_CODE = "4326";
@@ -681,6 +681,9 @@ public class Hadoop_Implementation_class
         //shapefile
         if(args[0].equals("shp")) {
 
+            System.out.println("Working Directory = " +
+                    System.getProperty("user.dir"));
+
             Configuration conf = new Configuration();
 
             //read mapping file (serialize) and pass it to configuration
@@ -704,13 +707,13 @@ public class Hadoop_Implementation_class
 
 
             //local
-//            FileInputFormat.addInputPath(job, new Path("Hadoop_Implementation/"+args[1]));
+            FileInputFormat.addInputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[1]));
 //            //FileInputFormat.setInputDirRecursive(job,true);
-//            FileOutputFormat.setOutputPath(job, new Path("Hadoop_Implementation/"+args[2]));
+            FileOutputFormat.setOutputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]));
 
             //hdfs
-            FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[1]));
-            FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[2]));
+//            FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[1]));
+//            FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[2]));
 
             job.waitForCompletion(true);
 

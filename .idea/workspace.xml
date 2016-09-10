@@ -40,11 +40,11 @@
       <file leaf-file-name="Hadoop_Implementation_class.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="640" column="12" selection-start-line="640" selection-start-column="12" selection-end-line="640" selection-end-column="12" />
+            <state relative-caret-position="360">
+              <caret line="719" column="0" selection-start-line="719" selection-start-column="0" selection-end-line="719" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1473529768087" expanded="false" signature="8066:8087" placeholder="&lt;~&gt;" />
+                <marker date="1473529966035" expanded="false" signature="8066:8087" placeholder="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -595,7 +595,14 @@
       <option name="project" value="LOCAL" />
       <updated>1473529304306</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Updated Version">
+      <created>1473529802195</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1473529802195</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -901,11 +908,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="640" column="12" selection-start-line="640" selection-start-column="12" selection-end-line="640" selection-end-column="12" />
+        <state relative-caret-position="360">
+          <caret line="719" column="0" selection-start-line="719" selection-start-column="0" selection-end-line="719" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1473529768087" expanded="false" signature="8066:8087" placeholder="&lt;~&gt;" />
+            <marker date="1473529966035" expanded="false" signature="8066:8087" placeholder="&lt;~&gt;" />
           </folding>
         </state>
       </provider>

@@ -1,82 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2875454f-bff3-4eee-974c-974d0d501262" name="Default" comment="Updated Version">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PointMultiPolygonFeatureInputFormat.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PointMultiPolygonInputFormat.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/AFG_adm1.dbf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/AFG_adm1.shp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/ARG_adm1.dbf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/ARG_adm1.shp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/GRC_adm1.dbf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/GRC_adm1.shp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/GRL_adm1.dbf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/GRL_adm1.shp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/ISL_adm1.dbf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/ISL_adm1.shp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/TCD_adm1.dbf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/TCD_adm1.shp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/aaaa.dbf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/aaaa.shp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/target/classes/Testing_class$ShapeFileMap.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/target/classes/Testing_class$ShapeFileReduce.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/target/classes/Testing_class.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointFeatureWritable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointWritable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PolygonFeatureWritable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PolygonWritable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PolylineMWritable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/jts_extras/JtsPolygon.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/jts_extras/PointorPolygon.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapred/AbstractFeatureReader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapred/AbstractInputFormat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapred/AbstractReader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapred/DBFInputFormat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapred/DBFRecordReader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapred/PointFeatureInputFormat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapred/PointInputFormat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapred/PolygonFeatureInputFormat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapred/PolygonInputFormat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PointFeatureInputFormat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PointInputFormat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PointPolygonFeatureInputFormat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PolygonFeatureInputFormat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PolygonInputFormat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/dbf/DBFTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/io/PointFeatureWritableTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/io/PointWritableTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/io/PolygonFeatureWritableTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/io/PolygonWritableTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/io/PolylineMWritableTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/mapred/DBFReaderTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/mapred/MapredFS.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/mapred/PointFeatureReaderTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/mapred/PointReaderTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/mapred/PolygonFeatureReaderTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/mapred/PolygonReaderTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/mapreduce/DBFReaderTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/mapreduce/MapreduceFS.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/mapreduce/PointFeatureReaderTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/mapreduce/PointReaderTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/mapreduce/PolygonFeatureReaderTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/mapreduce/PolygonReaderTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/shp/PointTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/shp/PolygonTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/shp/PolylineMTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/java/com/esri/test/MiniFS.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/python/CreatePolylineM.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/resources/log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/resources/testpoint.dbf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/resources/testpoint.shp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/resources/testpolygon.dbf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/resources/testpolygon.shp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Shapefile/src/test/resources/testpolylinem.shp" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Testing_class.java" afterPath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointPolygonFeatureWritable.java" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointMultiPolygonFeatureWritable.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointPolygonWritable.java" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointMultiPolygonWritable.java" />
+    <list default="true" id="2875454f-bff3-4eee-974c-974d0d501262" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/pom.xml" afterPath="$PROJECT_DIR$/Hadoop_Implementation/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" afterPath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" />
     </list>
     <ignored path="hadoop_3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -106,12 +33,22 @@
       <file leaf-file-name="Hadoop_Implementation_class.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="621" column="5" selection-start-line="621" selection-start-column="5" selection-end-line="621" selection-end-column="5" />
+            <state relative-caret-position="-4194">
+              <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1473183598563" expanded="false" signature="8004:8025" placeholder="&lt;~&gt;" />
+                <marker date="1473519628491" expanded="false" signature="8066:8087" placeholder="&lt;~&gt;" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -194,10 +131,9 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1438" />
-    <option name="y" value="-3" />
-    <option name="width" value="1924" />
-    <option name="height" value="1087" />
+    <option name="x" value="1440" />
+    <option name="width" value="1912" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -224,8 +160,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -372,73 +306,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Geotriples-Hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Geotriples-Hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hadoop_Implementation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Geotriples-Hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Geotriples-Hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hadoop_Implementation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Geotriples-Hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Geotriples-Hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hadoop_Implementation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="input" />
+              <option name="myItemId" value="target" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -462,11 +330,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -744,7 +614,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Hadoop_Implementation_class" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="shp input output" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="1.7" />
@@ -801,7 +671,14 @@
       <option name="project" value="LOCAL" />
       <updated>1472999165849</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Updated Version">
+      <created>1473183695231</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1473183695231</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -814,22 +691,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1438" y="-3" width="1924" height="1087" extended-state="6" />
+    <frame x="1440" y="0" width="1912" height="1080" extended-state="4" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3285124" sideWeight="0.47870076" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3285124" sideWeight="0.47870076" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3285124" sideWeight="0.52129924" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3798127" sideWeight="0.35262594" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295699" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38016528" sideWeight="0.65282214" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.4957265" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3798127" sideWeight="0.64737403" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29344434" sideWeight="0.4785638" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2284345" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22775991" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -965,17 +842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
           <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#416#417#0" expanded="false" />
-            <element signature="e#459#460#0" expanded="false" />
-            <element signature="e#649#650#0" expanded="false" />
-            <element signature="e#685#686#0" expanded="false" />
-            <element signature="e#749#750#0" expanded="false" />
-            <element signature="e#794#795#0" expanded="false" />
-            <element signature="e#854#855#0" expanded="false" />
-            <element signature="e#906#907#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -994,7 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-702">
           <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1030,11 +895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1747#1748#0" expanded="false" />
-            <element signature="e#1781#1782#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1052,9 +912,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="738">
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1072,17 +929,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="792">
           <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1098,25 +944,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-270">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/output/part-r-00000">
+      <provider editor-type-id="LargeFileEditor">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="86" selection-start-line="6" selection-start-column="86" selection-end-line="6" selection-end-column="86" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="621" column="5" selection-start-line="621" selection-start-column="5" selection-end-line="621" selection-end-column="5" />
+        <state relative-caret-position="-4194">
+          <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1473183598563" expanded="false" signature="8004:8025" placeholder="&lt;~&gt;" />
+            <marker date="1473519628491" expanded="false" signature="8066:8087" placeholder="&lt;~&gt;" />
           </folding>
         </state>
       </provider>

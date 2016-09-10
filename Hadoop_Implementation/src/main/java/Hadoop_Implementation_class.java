@@ -634,7 +634,7 @@ public class Hadoop_Implementation_class
 //            RMLMapping mapping = RMLMappingFactory.extractRMLMapping(in);
 
             //an trexoume se pseudodistributed xwris pragmatiko hdfs trexoume to parakatw
-            RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
+            RMLMapping mapping = RMLMappingFactory.extractRMLMapping(System.getProperty("user.dir")+"/Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
            // RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/4326_csv.txt");
 
 

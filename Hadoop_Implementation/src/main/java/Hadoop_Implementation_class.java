@@ -724,21 +724,26 @@ public class Hadoop_Implementation_class
 
             TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
 
-            System.out.println(map_reports.length);
+            long map_time = 0;
+            //System.out.println(map_reports.length);
             for(TaskReport report : map_reports) {
 
-                long time = report.getFinishTime() - report.getStartTime();
-                System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
+                map_time = map_time + report.getFinishTime() - report.getStartTime();
+                //System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
             }
+            System.out.println("Map took: " + map_time + " millis!");
 
-            TaskReport[] reduce_reports = job.getTaskReports(TaskType.MAP);
 
-            System.out.println(reduce_reports.length);
+            TaskReport[] reduce_reports = job.getTaskReports(TaskType.REDUCE);
+
+            long reduce_time = 0;
+            //System.out.println(reduce_reports.length);
             for(TaskReport report : reduce_reports) {
 
-                long time = report.getFinishTime() - report.getStartTime();
-                System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
+                reduce_time = reduce_time + report.getFinishTime() - report.getStartTime();
+                //System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
             }
+            System.out.println("Reduce took: " + reduce_time + " millis!");
 
 
         }
@@ -785,9 +790,9 @@ public class Hadoop_Implementation_class
 
 
             //local
-            FileInputFormat.addInputPath(job, new Path("Hadoop_Implementation/"+args[2]));
+            //FileInputFormat.addInputPath(job, new Path("Hadoop_Implementation/"+args[2]));
             //FileInputFormat.setInputDirRecursive(job,true);
-            FileOutputFormat.setOutputPath(job, new Path("Hadoop_Implementation/"+args[3]));
+            //FileOutputFormat.setOutputPath(job, new Path("Hadoop_Implementation/"+args[3]));
 
             //hdfs
             //  FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[2]));

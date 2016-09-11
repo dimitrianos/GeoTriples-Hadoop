@@ -639,7 +639,7 @@ public class Hadoop_Implementation_class
 //            Path inFile = new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
 //            FSDataInputStream in = fs.open(inFile);
 //            RMLMapping mapping = RMLMappingFactory.extractRMLMapping(in);
-           // RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
+            //RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
            // RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/4326_csv.txt");
 
 
@@ -702,7 +702,7 @@ public class Hadoop_Implementation_class
             job.setMapOutputKeyClass(NullWritable.class);
             job.setMapOutputValueClass(Text.class);
 
-            job.setNumReduceTasks(0);
+            job.setNumReduceTasks(Integer.parseInt(args[3]));
 
             job.setCombinerClass(ShapeFileReduce.class);
             job.setReducerClass(ShapeFileReduce.class);
@@ -712,9 +712,9 @@ public class Hadoop_Implementation_class
 
 
             //local
-   //         FileInputFormat.addInputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[1]));
+           //FileInputFormat.addInputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[1]));
 //            //FileInputFormat.setInputDirRecursive(job,true);
-  //          FileOutputFormat.setOutputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]));
+            //FileOutputFormat.setOutputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]));
 
             //hdfs
             FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/"+args[1]));
@@ -724,26 +724,21 @@ public class Hadoop_Implementation_class
 
             TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
 
-            long map_time = 0;
-            //System.out.println(map_reports.length);
+            System.out.println(map_reports.length);
             for(TaskReport report : map_reports) {
 
-                map_time = map_time + report.getFinishTime() - report.getStartTime();
-                //System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
+                long time = report.getFinishTime() - report.getStartTime();
+                System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
             }
-            System.out.println("Map took: " + map_time + " millis!");
-
 
             TaskReport[] reduce_reports = job.getTaskReports(TaskType.REDUCE);
 
-            long reduce_time = 0;
-            //System.out.println(reduce_reports.length);
+            System.out.println(reduce_reports.length);
             for(TaskReport report : reduce_reports) {
 
-                reduce_time = reduce_time + report.getFinishTime() - report.getStartTime();
-                //System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
+                long time = report.getFinishTime() - report.getStartTime();
+                System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
             }
-            System.out.println("Reduce took: " + reduce_time + " millis!");
 
 
         }

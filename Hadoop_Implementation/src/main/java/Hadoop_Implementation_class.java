@@ -702,7 +702,7 @@ public class Hadoop_Implementation_class
             job.setMapOutputKeyClass(NullWritable.class);
             job.setMapOutputValueClass(Text.class);
 
-            job.setNumReduceTasks(1);
+            job.setNumReduceTasks(0);
 
             job.setCombinerClass(ShapeFileReduce.class);
             job.setReducerClass(ShapeFileReduce.class);
@@ -712,13 +712,13 @@ public class Hadoop_Implementation_class
 
 
             //local
-          //  FileInputFormat.addInputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[1]));
+   //         FileInputFormat.addInputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[1]));
 //            //FileInputFormat.setInputDirRecursive(job,true);
-            //FileOutputFormat.setOutputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]));
+  //          FileOutputFormat.setOutputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]));
 
             //hdfs
-            FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[1]));
-            FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[2]));
+            FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/"+args[1]));
+            FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/"+args[2]));
 
             job.waitForCompletion(true);
 

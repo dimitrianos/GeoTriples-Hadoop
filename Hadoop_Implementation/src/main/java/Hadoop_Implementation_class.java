@@ -69,7 +69,7 @@ public class Hadoop_Implementation_class
 {
 
     public static class ShapeFileMap extends
-            Mapper<LongWritable, PointMultiPolygonFeatureWritable, NullWritable, Writable> {
+            Mapper<LongWritable, PointMultiPolygonFeatureWritable, Writable, NullWritable> {
 
 
         private final Text m_text = new Text();
@@ -229,7 +229,7 @@ public class Hadoop_Implementation_class
 
                         m_text.set(statements_str.substring(0,statements_str.length()-1));
 
-                        context.write(NullWritable.get(), m_text);
+                        context.write(m_text, NullWritable.get());
 
                     } catch (RDFHandlerException e) {
 
@@ -247,24 +247,19 @@ public class Hadoop_Implementation_class
 
 
     public static class ShapeFileReduce
-            extends Reducer<NullWritable,Text,NullWritable,Writable> {
+            extends Reducer<Text, NullWritable,Writable,NullWritable> {
 
         @Override
-        protected void reduce(NullWritable key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-            for (Text val:values)
-            context.write(key, val);
+        protected void reduce(Text key, Iterable<NullWritable> values, Context context) throws IOException, InterruptedException {
+            System.out.println("The key is:" + key.toString());
+
+            for (NullWritable val : values) {
+
+                System.out.println(val.toString());
+            }
+            context.write(key, NullWritable.get());
         }
 
-//        @Override
-//        public void reduce(
-//                final NullWritable key,
-//                final Text val,
-//                final Context context) throws IOException, InterruptedException {
-//
-//            System.out.println("aaaaa");
-//
-//
-//        }
     }
 
 
@@ -647,7 +642,7 @@ public class Hadoop_Implementation_class
 //            Path inFile = new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
 //            FSDataInputStream in = fs.open(inFile);
 //            RMLMapping mapping = RMLMappingFactory.extractRMLMapping(in);
-            //RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
+          //  RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
            // RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/4326_csv.txt");
 
 
@@ -707,12 +702,13 @@ public class Hadoop_Implementation_class
             job.setJarByClass(Hadoop_Implementation_class.class);
             job.setMapperClass(ShapeFileMap.class);
 
-            job.setMapOutputKeyClass(NullWritable.class);
-            job.setMapOutputValueClass(Text.class);
+            job.setMapOutputKeyClass(Text.class);
+            job.setMapOutputValueClass(NullWritable.class);
+
 
             job.setNumReduceTasks(Integer.parseInt(args[3]));
 
-            job.setCombinerClass(ShapeFileReduce.class);
+            //job.setCombinerClass(ShapeFileReduce.class);
             job.setReducerClass(ShapeFileReduce.class);
 
             job.setInputFormatClass(PointMultiPolygonFeatureInputFormat.class);
@@ -720,9 +716,9 @@ public class Hadoop_Implementation_class
 
 
             //local
-          // FileInputFormat.addInputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[1]));
+         //  FileInputFormat.addInputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[1]));
 //            //FileInputFormat.setInputDirRecursive(job,true);
-        //    FileOutputFormat.setOutputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]));
+           // FileOutputFormat.setOutputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]));
 
             //hdfs
             FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/"+args[1]));

@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2875454f-bff3-4eee-974c-974d0d501262" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" afterPath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/META-INF/MANIFEST.MF" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/META-INF/MANIFEST.MF" />
     </list>
@@ -208,24 +207,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Hadoop_Implementation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Geotriples-Hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Geotriples-Hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hadoop_Implementation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="output" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -628,7 +609,14 @@
       <option name="project" value="LOCAL" />
       <updated>1473529984364</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Updated Version">
+      <created>1473585918381</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1473585918381</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView">

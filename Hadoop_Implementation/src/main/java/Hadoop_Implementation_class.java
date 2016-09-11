@@ -96,7 +96,7 @@ public class Hadoop_Implementation_class
 
         private int k=0;
 
-
+        @Override
         public void map(
                 final LongWritable key,
                 final PointMultiPolygonFeatureWritable val,
@@ -249,14 +249,22 @@ public class Hadoop_Implementation_class
     public static class ShapeFileReduce
             extends Reducer<NullWritable,Text,NullWritable,Writable> {
 
-
-        public void reduce(
-                final NullWritable key,
-                final Text val,
-                final Context context) throws IOException, InterruptedException {
-
+        @Override
+        protected void reduce(NullWritable key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+            for (Text val:values)
             context.write(key, val);
         }
+
+//        @Override
+//        public void reduce(
+//                final NullWritable key,
+//                final Text val,
+//                final Context context) throws IOException, InterruptedException {
+//
+//            System.out.println("aaaaa");
+//
+//
+//        }
     }
 
 
@@ -712,9 +720,9 @@ public class Hadoop_Implementation_class
 
 
             //local
-           //FileInputFormat.addInputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[1]));
+          // FileInputFormat.addInputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[1]));
 //            //FileInputFormat.setInputDirRecursive(job,true);
-            //FileOutputFormat.setOutputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]));
+        //    FileOutputFormat.setOutputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]));
 
             //hdfs
             FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/"+args[1]));

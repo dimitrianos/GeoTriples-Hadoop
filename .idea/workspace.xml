@@ -8,6 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2875454f-bff3-4eee-974c-974d0d501262" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" afterPath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" />
     </list>
     <ignored path="hadoop_3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,14 +35,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Hadoop_Implementation_class.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Hadoop_Implementation_class.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="851" column="50" selection-start-line="851" selection-start-column="50" selection-end-line="851" selection-end-column="50" />
+            <state relative-caret-position="264">
+              <caret line="680" column="0" selection-start-line="680" selection-start-column="0" selection-end-line="680" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1473877583335" expanded="false" signature="8281:8302" placeholder="&lt;~&gt;" />
+                <marker date="1473880646420" expanded="false" signature="8281:8302" placeholder="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -57,10 +58,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myconf.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="myconf.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
+            <state relative-caret-position="612">
               <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
               <folding />
             </state>
@@ -217,7 +218,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -673,7 +674,21 @@
       <option name="project" value="LOCAL" />
       <updated>1473877688481</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Updated Version">
+      <created>1473877698181</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1473877698181</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Updated Version">
+      <created>1473879637884</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1473879637884</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView">
@@ -971,22 +986,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
+    <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="851" column="50" selection-start-line="851" selection-start-column="50" selection-end-line="851" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1473877583335" expanded="false" signature="8281:8302" placeholder="&lt;~&gt;" />
-          </folding>
+        <state relative-caret-position="612">
+          <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf.xml">
+    <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
-          <folding />
+        <state relative-caret-position="264">
+          <caret line="680" column="0" selection-start-line="680" selection-start-column="0" selection-end-line="680" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1473880646420" expanded="false" signature="8281:8302" placeholder="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1001,6 +1016,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

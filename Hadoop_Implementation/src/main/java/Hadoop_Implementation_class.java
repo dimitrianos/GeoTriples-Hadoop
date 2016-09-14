@@ -677,8 +677,9 @@ public class Hadoop_Implementation_class
 
             Configuration conf = new Configuration();
 
+            Path inFile = new Path(args[0]);
 
-            conf.addResource(new File("hdfs://hadoop-p2-1:9000/hadoop/"+args[0]).getAbsoluteFile().toURI().toURL());
+            conf.addResource(inFile);
 
 
             //shapefile

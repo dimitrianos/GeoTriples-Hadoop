@@ -1,0 +1,57 @@
+ 
+<configuration>
+
+    <property>
+        <name>files_format</name>
+        <!--
+        The file format,
+        shp -> for shapefiles
+        csv -> for csv files
+        -->
+        <value>sp</value>
+    </property>
+
+    <property>
+        <name>mapping_file</name>
+        <!--
+        The path to the mapping file
+        -->
+        <value>Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl</value>
+    </property>
+
+    <property>
+        <name>input_dir</name>
+        <!--
+        The path to the input directory
+        -->
+        <value>/media/media_first/Downloads/Geotriples-Hadoop/Hadoop_Implementation/input</value>
+    </property>
+
+    <property>
+        <name>output_dir</name>
+        <!--
+        The path to the output directory
+        -->
+        <value>/media/media_first/Downloads/Geotriples-Hadoop/Hadoop_Implementation/output</value>
+    </property>
+
+    <property>
+        <name>reducers_number</name>
+        <!--
+        The number of the reducers,
+        default value is 0 -> for no reduce job
+        -->
+        <value>0</value>
+    </property>
+
+    <property>
+        <name>merge</name>
+        <!--
+        Merge the result,
+        0 -> for no merge
+        default value is 1 -> for merge
+        -->
+        <value>1</value>
+    </property>
+
+</configuration>

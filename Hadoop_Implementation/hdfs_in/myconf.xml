@@ -1,7 +1,57 @@
  
 <configuration>
-<property>
-      <name>var1</name>
-      <value>ShapeFileMap</value>
- </property>
+
+    <property>
+        <name>files_format</name>
+        <!--
+        The file format,
+        shp -> for shapefiles
+        csv -> for csv files
+        -->
+        <value>shp</value>
+    </property>
+
+    <property>
+        <name>mapping_file</name>
+        <!--
+        The path to the mapping file
+        -->
+        <value>hdfs://hadoop-p2-1:9000/hadoop/afg_adm_shp.ttl</value>
+    </property>
+
+    <property>
+        <name>input_dir</name>
+        <!--
+        The path to the input directory
+        -->
+        <value>hdfs://hadoop-p2-1:9000/hadoop/input</value>
+    </property>
+
+    <property>
+        <name>output_dir</name>
+        <!--
+        The path to the output directory
+        -->
+        <value>hdfs://hadoop-p2-1:9000/hadoop/output</value>
+    </property>
+
+    <property>
+        <name>reducers_number</name>
+        <!--
+        The number of the reducers,
+        default value is 0 -> for no reduce job
+        -->
+        <value>0</value>
+    </property>
+
+    <property>
+        <name>merge</name>
+        <!--
+        Merge the result,
+        0 -> for no merge
+        default value is 1 -> for merge
+        -->
+        <value>0</value>
+    </property>
+
 </configuration>

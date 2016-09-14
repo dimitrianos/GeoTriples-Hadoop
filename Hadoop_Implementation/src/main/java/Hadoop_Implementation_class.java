@@ -12,6 +12,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.*;
@@ -625,25 +626,15 @@ public class Hadoop_Implementation_class
 
     }
 
-        public static String all_triples_maps()
+        public static String all_triples_maps(String mapping_file_path)
                 throws RepositoryException, R2RMLDataError, RDFParseException, IOException, InvalidR2RMLSyntaxException, InvalidR2RMLStructureException {
 
 
-            //an eimaste se perivallon gia peiramata sto hdfs tote exoume to parakatw block kwdika
             Configuration conf = new Configuration();
             FileSystem fs = FileSystem.get(conf);
-            Path inFile = new Path("hdfs://hadoop-p2-1:9000/hadoop/afg_adm_shp.ttl");
+            Path inFile = new Path(mapping_file_path);
             FSDataInputStream in = fs.open(inFile);
             RMLMapping mapping = RMLMappingFactory.extractRMLMapping(in);
-
-            //an trexoume se pseudodistributed xwris pragmatiko hdfs trexoume to parakatw
-//            Configuration conf = new Configuration();
-//            FileSystem fs = FileSystem.get(conf);
-//            Path inFile = new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
-//            FSDataInputStream in = fs.open(inFile);
-//            RMLMapping mapping = RMLMappingFactory.extractRMLMapping(in);
-          //  RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl");
-           // RMLMapping mapping = RMLMappingFactory.extractRMLMapping("Hadoop_Implementation/hdfs_in/4326_csv.txt");
 
 
             Config.EPSG_CODE = "4326";
@@ -680,146 +671,364 @@ public class Hadoop_Implementation_class
 
     public static void main(String[] args) throws Exception {
 
-        // shp,csv
-        // input mapping file
-        // input directory
-        // output directory
 
 
-        //shapefile
-        if(args[0].equals("shp")) {
-
-            System.out.println("Working Directory = " +
-                    System.getProperty("user.dir"));
+        if(args.length>0) {
 
             Configuration conf = new Configuration();
 
-            //read mapping file (serialize) and pass it to configuration
-            conf.set("triplemap",all_triples_maps());
 
-            Job job = Job.getInstance(conf, "geotriples");
-
-            job.setJarByClass(Hadoop_Implementation_class.class);
-            job.setMapperClass(ShapeFileMap.class);
-
-            job.setMapOutputKeyClass(Text.class);
-            job.setMapOutputValueClass(NullWritable.class);
+            conf.addResource(new File(args[0]).getAbsoluteFile().toURI().toURL());
 
 
-            job.setNumReduceTasks(Integer.parseInt(args[3]));
-
-            //job.setCombinerClass(ShapeFileReduce.class);
-            job.setReducerClass(ShapeFileReduce.class);
-
-            job.setInputFormatClass(PointMultiPolygonFeatureInputFormat.class);
-            job.setOutputFormatClass(TextOutputFormat.class);
+            //shapefile
+            if(conf.get("files_format").equals("shp")) {
 
 
-            //local
-         //  FileInputFormat.addInputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[1]));
+                //read mapping file (serialize) and pass it to configuration
+                conf.set("triplemap",all_triples_maps(conf.get("mapping_file")));
+
+                Job job = Job.getInstance(conf, "geotriples");
+
+                job.setJarByClass(Hadoop_Implementation_class.class);
+                job.setMapperClass(ShapeFileMap.class);
+
+                job.setMapOutputKeyClass(Text.class);
+                job.setMapOutputValueClass(NullWritable.class);
+
+
+                job.setNumReduceTasks(Integer.parseInt(conf.get("reducers_number")));
+
+                //job.setCombinerClass(ShapeFileReduce.class);
+                job.setReducerClass(ShapeFileReduce.class);
+
+                job.setInputFormatClass(PointMultiPolygonFeatureInputFormat.class);
+                job.setOutputFormatClass(TextOutputFormat.class);
+
+
+                FileInputFormat.addInputPath(job, new Path(conf.get("input_dir")));
 //            //FileInputFormat.setInputDirRecursive(job,true);
-           // FileOutputFormat.setOutputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]));
+                FileOutputFormat.setOutputPath(job, new Path(conf.get("output_dir")));
 
-            //hdfs
-            FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/"+args[1]));
-            FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/"+args[2]));
 
-            job.waitForCompletion(true);
 
-            TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
+                job.waitForCompletion(true);
 
-            System.out.println(map_reports.length);
-            for(TaskReport report : map_reports) {
 
-                long time = report.getFinishTime() - report.getStartTime();
-                System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
+
+
+            if(conf.get("merge").equals("1")) {
+
+
+                FileSystem fileSystem = FileSystem.get(conf);
+
+
+                Path source = new Path(conf.get("output_dir"));
+
+                Path new_target = new Path(conf.get("output_dir")+"_new");
+
+                fileSystem.mkdirs(new_target);
+
+                Path target = new Path(conf.get("output_dir")+"_new");
+
+                FileUtil.copyMerge(fileSystem, source,fileSystem, target, true , conf, null);
+
+                fileSystem.rename(target,source);
+
+
+
             }
 
-            TaskReport[] reduce_reports = job.getTaskReports(TaskType.REDUCE);
 
-            System.out.println(reduce_reports.length);
-            for(TaskReport report : reduce_reports) {
+                TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
 
-                long time = report.getFinishTime() - report.getStartTime();
-                System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
+                System.out.println(map_reports.length);
+                for(TaskReport report : map_reports) {
+
+                    long time = report.getFinishTime() - report.getStartTime();
+                    System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
+                }
+
+                TaskReport[] reduce_reports = job.getTaskReports(TaskType.REDUCE);
+
+                System.out.println(reduce_reports.length);
+                for(TaskReport report : reduce_reports) {
+
+                    long time = report.getFinishTime() - report.getStartTime();
+                    System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
+                }
+
+            }
+            //csv
+            else if(conf.get("files_format").equals("csv")) {
+
+
+                File folder = new File(conf.get("input_dir"));
+                File[] listOfFiles = folder.listFiles();
+
+                String filename = listOfFiles[0].getName();
+
+                BufferedReader br = new BufferedReader(new FileReader(conf.get("input_dir")+"/"+filename));
+
+                String header_values = br.readLine();
+
+
+                conf.set("header_values",header_values);
+
+
+                Job job = Job.getInstance(conf, "geotriples");
+
+                job.setJarByClass(Hadoop_Implementation_class.class);
+                job.setMapperClass(CsvFileMap.class);
+
+                job.setMapOutputKeyClass(NullWritable.class);
+                job.setMapOutputValueClass(Text.class);
+
+                job.setNumReduceTasks(Integer.parseInt(conf.get("reducers_number")));
+
+                job.setCombinerClass(ShapeFileReduce.class);
+                job.setReducerClass(ShapeFileReduce.class);
+
+                job.setInputFormatClass(TextInputFormat.class);
+                job.setOutputFormatClass(TextOutputFormat.class);
+
+
+                FileInputFormat.addInputPath(job, new Path(conf.get("input_dir")));
+//            //FileInputFormat.setInputDirRecursive(job,true);
+                FileOutputFormat.setOutputPath(job, new Path(conf.get("output_dir")));
+
+
+
+                job.waitForCompletion(true);
+
+
+                if(conf.get("merge").equals("1")) {
+
+
+                    FileSystem fileSystem = FileSystem.get(conf);
+
+
+                    Path source = new Path(conf.get("output_dir"));
+
+                    Path new_target = new Path(conf.get("output_dir")+"_new");
+
+                    fileSystem.mkdirs(new_target);
+
+                    Path target = new Path(conf.get("output_dir")+"_new");
+
+                    FileUtil.copyMerge(fileSystem, source,fileSystem, target, true , conf, null);
+
+                    fileSystem.rename(target,source);
+
+
+
+                }
+
+
+                TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
+
+                System.out.println(map_reports.length);
+                for(TaskReport report : map_reports) {
+
+                    long time = report.getFinishTime() - report.getStartTime();
+                    System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
+                }
+
+                TaskReport[] reduce_reports = job.getTaskReports(TaskType.REDUCE);
+
+                System.out.println(reduce_reports.length);
+                for(TaskReport report : reduce_reports) {
+
+                    long time = report.getFinishTime() - report.getStartTime();
+                    System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
+                }
+
+
+
+
+            }
+            else {
+
+                System.out.println("Please provide correct file format");
+                System.exit(0);
+
             }
 
 
         }
-        //csv
-        else if(args[0].equals("csv")) {
+        else {
 
-            Configuration conf = new Configuration();
-
-            //read mapping file (serialize) and pass it to configuration
-            conf.set("triplemap",all_triples_maps());
-
-
-
-
-            File folder = new File("Hadoop_Implementation/"+args[2]);
-            File[] listOfFiles = folder.listFiles();
-
-            String filename = listOfFiles[0].getName();
-
-            BufferedReader br = new BufferedReader(new FileReader("Hadoop_Implementation/"+args[2]+"/"+filename));
-
-            String header_values = br.readLine();
-
-
-            conf.set("header_values",header_values);
-
-
-            Job job = Job.getInstance(conf, "word count");
-
-            job.setJarByClass(Hadoop_Implementation_class.class);
-            job.setMapperClass(CsvFileMap.class);
-
-            job.setMapOutputKeyClass(NullWritable.class);
-            job.setMapOutputValueClass(Text.class);
-
-            job.setNumReduceTasks(1);
-
-            job.setCombinerClass(ShapeFileReduce.class);
-            job.setReducerClass(ShapeFileReduce.class);
-
-            job.setInputFormatClass(TextInputFormat.class);
-            job.setOutputFormatClass(TextOutputFormat.class);
-
-
-
-            //local
-            //FileInputFormat.addInputPath(job, new Path("Hadoop_Implementation/"+args[2]));
-            //FileInputFormat.setInputDirRecursive(job,true);
-            //FileOutputFormat.setOutputPath(job, new Path("Hadoop_Implementation/"+args[3]));
-
-            //hdfs
-            //  FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[2]));
-            //FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[3]));
-
-            job.waitForCompletion(true);
-
-            TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
-
-            System.out.println(map_reports.length);
-            for(TaskReport report : map_reports) {
-
-                long time = report.getFinishTime() - report.getStartTime();
-                System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
-            }
-
-            TaskReport[] reduce_reports = job.getTaskReports(TaskType.MAP);
-
-            System.out.println(reduce_reports.length);
-            for(TaskReport report : reduce_reports) {
-
-                long time = report.getFinishTime() - report.getStartTime();
-                System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
-            }
-
-
+            System.out.println("Please provide the xml configuration file");
+            System.exit(0);
 
         }
+
+
+
+    }
+
+}
+
+
+
+
+
+
+//        //shapefile
+//        if(args[0].equals("shp")) {
+//
+//
+//            Configuration conf = new Configuration();
+//
+//            //read mapping file (serialize) and pass it to configuration
+//            //conf.set("triplemap",all_triples_maps());
+//
+//            Job job = Job.getInstance(conf, "geotriples");
+//
+//            job.setJarByClass(Hadoop_Implementation_class.class);
+//            job.setMapperClass(ShapeFileMap.class);
+//
+//            job.setMapOutputKeyClass(Text.class);
+//            job.setMapOutputValueClass(NullWritable.class);
+//
+//
+//            job.setNumReduceTasks(Integer.parseInt(args[3]));
+//
+//            //job.setCombinerClass(ShapeFileReduce.class);
+//            job.setReducerClass(ShapeFileReduce.class);
+//
+//            job.setInputFormatClass(PointMultiPolygonFeatureInputFormat.class);
+//            job.setOutputFormatClass(TextOutputFormat.class);
+//
+//
+//            //local
+//           FileInputFormat.addInputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[1]));
+////            //FileInputFormat.setInputDirRecursive(job,true);
+//          FileOutputFormat.setOutputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]));
+//
+//            //hdfs
+//            //FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/"+args[1]));
+//            //FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/"+args[2]));
+//
+//
+//            job.waitForCompletion(true);
+
+
+
+
+
+//            FileSystem fileSystem = FileSystem.get(conf);
+//
+//
+//            Path source = new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]);
+//
+//            Path target = new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/new");
+//
+//
+//            FileUtil.copyMerge(fileSystem, source,fileSystem, target, true , conf, null);
+//
+//
+//            fileSystem.rename(target,source);
+
+
+
+
+//
+//
+//            TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
+//
+//            System.out.println(map_reports.length);
+//            for(TaskReport report : map_reports) {
+//
+//                long time = report.getFinishTime() - report.getStartTime();
+//                System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
+//            }
+//
+//            TaskReport[] reduce_reports = job.getTaskReports(TaskType.REDUCE);
+//
+//            System.out.println(reduce_reports.length);
+//            for(TaskReport report : reduce_reports) {
+//
+//                long time = report.getFinishTime() - report.getStartTime();
+//                System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
+//            }
+//
+//
+//        }
+//        //csv
+//        else if(args[0].equals("csv")) {
+//
+//            Configuration conf = new Configuration();
+//
+//            //read mapping file (serialize) and pass it to configuration
+//            //conf.set("triplemap",all_triples_maps());
+//
+//
+//
+//
+//            File folder = new File("Hadoop_Implementation/"+args[2]);
+//            File[] listOfFiles = folder.listFiles();
+//
+//            String filename = listOfFiles[0].getName();
+//
+//            BufferedReader br = new BufferedReader(new FileReader("Hadoop_Implementation/"+args[2]+"/"+filename));
+//
+//            String header_values = br.readLine();
+//
+//
+//            conf.set("header_values",header_values);
+//
+//
+//            Job job = Job.getInstance(conf, "word count");
+//
+//            job.setJarByClass(Hadoop_Implementation_class.class);
+//            job.setMapperClass(CsvFileMap.class);
+//
+//            job.setMapOutputKeyClass(NullWritable.class);
+//            job.setMapOutputValueClass(Text.class);
+//
+//            job.setNumReduceTasks(1);
+//
+//            job.setCombinerClass(ShapeFileReduce.class);
+//            job.setReducerClass(ShapeFileReduce.class);
+//
+//            job.setInputFormatClass(TextInputFormat.class);
+//            job.setOutputFormatClass(TextOutputFormat.class);
+//
+//
+//
+//            //local
+//            //FileInputFormat.addInputPath(job, new Path("Hadoop_Implementation/"+args[2]));
+//            //FileInputFormat.setInputDirRecursive(job,true);
+//            //FileOutputFormat.setOutputPath(job, new Path("Hadoop_Implementation/"+args[3]));
+//
+//            //hdfs
+//            //  FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[2]));
+//            //FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[3]));
+//
+//            job.waitForCompletion(true);
+//
+//            TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
+//
+//            System.out.println(map_reports.length);
+//            for(TaskReport report : map_reports) {
+//
+//                long time = report.getFinishTime() - report.getStartTime();
+//                System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
+//            }
+//
+//            TaskReport[] reduce_reports = job.getTaskReports(TaskType.MAP);
+//
+//            System.out.println(reduce_reports.length);
+//            for(TaskReport report : reduce_reports) {
+//
+//                long time = report.getFinishTime() - report.getStartTime();
+//                System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
+//            }
+//
+//
+//
+//        }
 
 
 
@@ -840,7 +1049,7 @@ public class Hadoop_Implementation_class
 //
 ////
 ////
-////        conf.addResource(new File("hdfs_in/myconf.xml").getAbsoluteFile().toURI().toURL());
+////        conf.addResource(new File("hdfs_in/myconf_local.xml").getAbsoluteFile().toURI().toURL());
 ////
 ////
 ////        System.out.println("FFFFFFFFFF " + conf);
@@ -969,6 +1178,3 @@ public class Hadoop_Implementation_class
 //        }
 
 
-    }
-
-}

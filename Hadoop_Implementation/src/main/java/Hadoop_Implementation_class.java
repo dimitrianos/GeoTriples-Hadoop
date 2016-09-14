@@ -677,9 +677,12 @@ public class Hadoop_Implementation_class
 
             Configuration conf = new Configuration();
 
+            FileSystem fs = FileSystem.get(conf);
             Path inFile = new Path(args[0]);
+            FSDataInputStream in = fs.open(inFile);
 
-            conf.addResource(inFile);
+
+            conf.addResource(in);
 
 
             //shapefile

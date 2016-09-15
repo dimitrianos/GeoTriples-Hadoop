@@ -719,9 +719,28 @@ public class Hadoop_Implementation_class
                 job.waitForCompletion(true);
 
 
+                TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
+
+                System.out.println(map_reports.length);
+                for(TaskReport report : map_reports) {
+
+                    long time = report.getFinishTime() - report.getStartTime();
+                    System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
+                }
+
+                TaskReport[] reduce_reports = job.getTaskReports(TaskType.REDUCE);
+
+                System.out.println(reduce_reports.length);
+                for(TaskReport report : reduce_reports) {
+
+                    long time = report.getFinishTime() - report.getStartTime();
+                    System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
+                }
 
 
-            if(conf.get("merge").equals("1")) {
+
+
+                if(conf.get("merge").equals("1")) {
 
 
                 FileSystem fileSystem = FileSystem.get(conf);
@@ -742,25 +761,6 @@ public class Hadoop_Implementation_class
 
 
             }
-
-
-                TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
-
-                System.out.println(map_reports.length);
-                for(TaskReport report : map_reports) {
-
-                    long time = report.getFinishTime() - report.getStartTime();
-                    System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
-                }
-
-                TaskReport[] reduce_reports = job.getTaskReports(TaskType.REDUCE);
-
-                System.out.println(reduce_reports.length);
-                for(TaskReport report : reduce_reports) {
-
-                    long time = report.getFinishTime() - report.getStartTime();
-                    System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
-                }
 
             }
             //csv

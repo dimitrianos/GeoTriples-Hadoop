@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2875454f-bff3-4eee-974c-974d0d501262" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointMultiPolygonWritable.java" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointMultiPolygonWritable.java" />
     </list>
     <ignored path="hadoop_3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -997,7 +996,14 @@
       <option name="project" value="LOCAL" />
       <updated>1474221298526</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Updated Version">
+      <created>1474224066903</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1474224066903</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView">

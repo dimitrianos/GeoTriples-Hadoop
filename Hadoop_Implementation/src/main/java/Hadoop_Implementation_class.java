@@ -97,6 +97,11 @@ public class Hadoop_Implementation_class
 
         private int k=0;
 
+        private ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+        private RDFWriter rdfWriter = Rio.createWriter(format,stream);
+
+
         @Override
         public void map(
                 final LongWritable key,
@@ -206,9 +211,9 @@ public class Hadoop_Implementation_class
 
                 Collection<Statement> statements = performer.perform(row, outputDataSet,tm);
 
-
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                RDFWriter rdfWriter = Rio.createWriter(format,stream);
+                stream.reset();
+               // ByteArrayOutputStream stream = new ByteArrayOutputStream();
+               // RDFWriter rdfWriter = Rio.createWriter(format,stream);
 
                     try {
 

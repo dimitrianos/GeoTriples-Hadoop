@@ -7,11 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2875454f-bff3-4eee-974c-974d0d501262" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/AFG_adm1.dbf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hadoop_Implementation/input/AFG_adm1.shp" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf_local.xml" afterPath="$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf_local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" afterPath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" />
     </list>
     <ignored path="hadoop_3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,12 +38,22 @@
       <file leaf-file-name="Hadoop_Implementation_class.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10430">
-              <caret line="726" column="79" selection-start-line="726" selection-start-column="79" selection-end-line="726" selection-end-column="79" />
+            <state relative-caret-position="182">
+              <caret line="213" column="31" selection-start-line="213" selection-start-column="31" selection-end-line="213" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1473961584456" expanded="false" signature="8281:8302" placeholder="&lt;~&gt;" />
+                <marker date="1474221245463" expanded="false" signature="8466:8487" placeholder="&lt;~&gt;" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="output" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/output/output">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2484">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -56,16 +63,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-406">
               <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="output" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/output/output">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-54">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -94,8 +91,8 @@
       <file leaf-file-name="ShpReader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="764">
-              <caret line="180" column="35" selection-start-line="180" selection-start-column="35" selection-end-line="180" selection-end-column="35" />
+            <state relative-caret-position="332">
+              <caret line="135" column="12" selection-start-line="135" selection-start-column="12" selection-end-line="135" selection-end-column="12" />
               <folding>
                 <element signature="e#3777#3786#0" expanded="true" />
               </folding>
@@ -106,8 +103,18 @@
       <file leaf-file-name="PointMultiPolygonFeatureInputFormat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PointMultiPolygonFeatureInputFormat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
+            <state relative-caret-position="270">
               <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PointorMultiPolygon.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/jts_extras/PointorMultiPolygon.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -172,9 +179,9 @@
         <option value="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Testing_class.java" />
         <option value="$PROJECT_DIR$/dependency-reduced-pom.xml" />
         <option value="$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf.xml" />
-        <option value="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" />
         <option value="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java" />
         <option value="$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf_local.xml" />
+        <option value="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" />
       </list>
     </option>
   </component>
@@ -376,10 +383,6 @@
               <option name="myItemId" value="esri" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jts_extras" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -412,36 +415,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Geotriples-Hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Geotriples-Hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Shapefile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="esri" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1000,7 +973,14 @@
       <option name="project" value="LOCAL" />
       <updated>1473961618332</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Updated Version">
+      <created>1474220135282</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1474220135282</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1117,13 +1097,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/jts_extras/PointorMultiPolygon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointFeatureWritable.java" />
     <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointWritable.java" />
     <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PolygonFeatureWritable.java" />
@@ -1192,13 +1165,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dependency-reduced-pom.xml" />
-    <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/Hadoop_Implementation.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3409">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="864">
@@ -1252,29 +1218,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10430">
-          <caret line="726" column="79" selection-start-line="726" selection-start-column="79" selection-end-line="726" selection-end-column="79" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1473961584456" expanded="false" signature="8281:8302" placeholder="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/jts_extras/JtsMultiPolygon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PointMultiPolygonFeatureInputFormat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1298,13 +1245,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java">
+    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PointMultiPolygonFeatureInputFormat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="764">
-          <caret line="180" column="35" selection-start-line="180" selection-start-column="35" selection-end-line="180" selection-end-column="35" />
-          <folding>
-            <element signature="e#3777#3786#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="270">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/jts_extras/PointorMultiPolygon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1316,9 +1269,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="135" column="12" selection-start-line="135" selection-start-column="12" selection-end-line="135" selection-end-column="12" />
+          <folding>
+            <element signature="e#3777#3786#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/Hadoop_Implementation.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="213" column="31" selection-start-line="213" selection-start-column="31" selection-end-line="213" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1474221245463" expanded="false" signature="8466:8487" placeholder="&lt;~&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/output/output">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54">
+        <state relative-caret-position="-2484">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>

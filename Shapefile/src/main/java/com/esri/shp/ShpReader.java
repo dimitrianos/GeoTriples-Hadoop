@@ -141,7 +141,7 @@ public class ShpReader implements Serializable
 
                 final int count = m_parts[j++] - m_parts[i];
 
-                Coordinate[] coords  = new Coordinate[count+1];
+                Coordinate[] coords  = new Coordinate[count];
 
 
                 for (int c = 0; c < count; c++)
@@ -163,14 +163,14 @@ public class ShpReader implements Serializable
                 //LineString lineString = gf.createLineString(coords);
 //System.out.println("geia sas");
                 LinearRing ring= null;
-                if( coords[coords.length-2].equals(coords[0])) {
+                if( coords[coords.length-1].equals(coords[0])) {
                     //if( lineString.isClosed() )
-                    coords = Arrays.copyOf(coords,coords.length-1);
+
                 }
                 else {
             //coords[coords.length-1]=coords[0];
                     //CoordinateSequence sequence = lineString.getCoordinateSequence();
-
+                    coords = Arrays.copyOf(coords,coords.length+1);
                     coords[coords.length-1]=coords[0];
 //                    for( int n=0; n<sequence.size();n++){
 //

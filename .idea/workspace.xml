@@ -8,10 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2875454f-bff3-4eee-974c-974d0d501262" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl" afterPath="$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf_local.xml" afterPath="$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf_local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" afterPath="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/dbf/DBFField.java" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/dbf/DBFField.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java" afterPath="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java" />
     </list>
     <ignored path="hadoop_3.iws" />
@@ -42,7 +38,7 @@
       <file leaf-file-name="Hadoop_Implementation_class.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
+            <state relative-caret-position="216">
               <caret line="122" column="50" selection-start-line="122" selection-start-column="50" selection-end-line="122" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -52,91 +48,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Attributes.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/Attributes.java">
+      <file leaf-file-name="ShpReader.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-397">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            <state relative-caret-position="503">
+              <caret line="176" column="54" selection-start-line="176" selection-start-column="54" selection-end-line="176" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBFReader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/dbf/DBFReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="afg_adm_shp.ttl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="afg_adm_shp.ttl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="324">
               <caret line="18" column="79" selection-start-line="18" selection-start-column="79" selection-end-line="18" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBFRecordReader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/DBFRecordReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myconf_local.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf_local.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShapeAttributeTitles.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/jts_extras/ShapeAttributeTitles.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBFField.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/dbf/DBFField.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBFHeader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/dbf/DBFHeader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="34" column="30" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PointMultiPolygonFeatureInputFormat.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/PointMultiPolygonFeatureInputFormat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-108">
-              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -203,9 +129,9 @@
         <option value="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/io/PointMultiPolygonWritable.java" />
         <option value="$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl" />
         <option value="$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf_local.xml" />
-        <option value="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java" />
         <option value="$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java" />
         <option value="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/dbf/DBFField.java" />
+        <option value="$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java" />
       </list>
     </option>
   </component>
@@ -1063,7 +989,14 @@
       <option name="project" value="LOCAL" />
       <updated>1474224075063</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Updated Version">
+      <created>1474232866960</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1474232866960</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1342,19 +1275,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java">
+    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/dbf/DBFReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="132" column="30" selection-start-line="132" selection-start-column="30" selection-end-line="132" selection-end-column="30" />
+        <state relative-caret-position="118">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf_local.xml">
+    <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="216">
+          <caret line="122" column="50" selection-start-line="122" selection-start-column="50" selection-end-line="122" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1474232127037" expanded="false" signature="8523:8544" placeholder="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1366,18 +1302,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/dbf/DBFReader.java">
+    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/dbf/DBFField.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/DBFRecordReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
+        <state relative-caret-position="414">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1390,21 +1318,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/src/main/java/Hadoop_Implementation_class.java">
+    <entry file="file://$PROJECT_DIR$/Hadoop_Implementation/hdfs_in/myconf_local.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="122" column="50" selection-start-line="122" selection-start-column="50" selection-end-line="122" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1474232127037" expanded="false" signature="8523:8544" placeholder="&lt;~&gt;" />
-          </folding>
+        <state relative-caret-position="368">
+          <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/dbf/DBFField.java">
+    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/mapreduce/DBFRecordReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="208">
+          <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -1413,6 +1338,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="18" column="79" selection-start-line="18" selection-start-column="79" selection-end-line="18" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shapefile/src/main/java/com/esri/shp/ShpReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="176" column="54" selection-start-line="176" selection-start-column="54" selection-end-line="176" selection-end-column="54" />
           <folding />
         </state>
       </provider>

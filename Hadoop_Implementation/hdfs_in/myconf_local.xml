@@ -51,7 +51,7 @@
         0 -> for no merge
         default value is 1 -> for merge
         -->
-        <value>1</value>
+        <value>0</value>
     </property>
 
 </configuration>

@@ -65,7 +65,8 @@ public class DBFField implements Serializable
         
         ShapeAttributeTitles matl = new ShapeAttributeTitles();
          
-                  
+
+
         matl.set_titles(field.fieldName);
         
         //

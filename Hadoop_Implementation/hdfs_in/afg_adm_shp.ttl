@@ -152,6 +152,16 @@ rr:predicateObjectMap [
 		rrx:argumentMap ( [ rml:reference "the_geom"; ] );
 	];
 ];
+
+ rr:predicateObjectMap [
+       	rr:predicateMap [ rr:constant ogc:asWKT ];
+       	rr:objectMap [
+       		rr:datatype  ogc:wktLiteral;
+       		rrx:function rrxf:asWKT;
+       		rrx:argumentMap ( [ rml:reference "the_geom"; ] );
+       	];
+];
+
 rr:predicateObjectMap [
 	rr:predicateMap [ rr:constant ogc:coordinateDimension ];
 	rr:objectMap [

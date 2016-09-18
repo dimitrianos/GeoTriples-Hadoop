@@ -156,13 +156,13 @@ public class Hadoop_Implementation_class
 
                     }
 
-
+                registerFunctions();
                 k++;
 
             }
 
 
-            registerFunctions();
+
 
             for(TriplesMap tm : list_map){
 
@@ -232,8 +232,8 @@ public class Hadoop_Implementation_class
 
                         String statements_str = stream.toString();
 
-
-                        m_text.set(statements_str.substring(0,statements_str.length()-1));
+                        m_text.set(statements_str);
+                       // m_text.set(statements_str.substring(0,statements_str.length()-1));
 
                         context.write(m_text, NullWritable.get());
 

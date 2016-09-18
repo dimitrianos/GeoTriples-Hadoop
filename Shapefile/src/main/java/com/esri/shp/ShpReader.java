@@ -15,12 +15,14 @@ import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.MultiPolygon;
 
+import com.vividsolutions.jts.geom.impl.CoordinateArraySequence;
 import org.apache.commons.io.EndianUtils;
 
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -130,15 +132,17 @@ public class ShpReader implements Serializable
 
             readShapeHeader();
 
-            List<Polygon> pll_list = new ArrayList<Polygon>();
+            Polygon[] pll_list=new Polygon[numParts];
+            //List<Polygon> pll_list = new ArrayList<Polygon>();
 
-            for (int i = 0, j = 1; i < numParts; )
+            for (int i = 0, j = 1; i < numParts; ++i)
             {
 
 
-                final int count = m_parts[j++] - m_parts[i++];
+                final int count = m_parts[j++] - m_parts[i];
 
-                Coordinate[] coords  = new Coordinate[count];
+                Coordinate[] coords  = new Coordinate[count+1];
+
 
                 for (int c = 0; c < count; c++)
                 {
@@ -156,39 +160,42 @@ public class ShpReader implements Serializable
 
 
 
-                LineString lineString = gf.createLineString(coords);
-
+                //LineString lineString = gf.createLineString(coords);
+//System.out.println("geia sas");
                 LinearRing ring= null;
-
-                if( lineString.isClosed() )
-                    ring = gf.createLinearRing(coords);
-                else {
-                    CoordinateSequence sequence = lineString.getCoordinateSequence();
-                    Coordinate array[] = new Coordinate[ sequence.size() + 1 ];
-
-                    for( int n=0; n<sequence.size();n++){
-
-                        array[n] = sequence.getCoordinate(n);
-                        array[array.length-1] = sequence.getCoordinate(0);
-                        ring = gf.createLinearRing( array );
-
-                    }
+                if( coords[coords.length-2].equals(coords[0])) {
+                    //if( lineString.isClosed() )
+                    coords = Arrays.copyOf(coords,coords.length-1);
                 }
+                else {
+            //coords[coords.length-1]=coords[0];
+                    //CoordinateSequence sequence = lineString.getCoordinateSequence();
 
-
+                    coords[coords.length-1]=coords[0];
+//                    for( int n=0; n<sequence.size();n++){
+//
+//                        array[n] = sequence.getCoordinate(n);
+//
+//                    }
+//                    array[array.length-1] = sequence.getCoordinate(0);
+//                    ring = gf.createLinearRing( array );
+                }
+                //System.out.println("prin");
+                ring = gf.createLinearRing(coords);
+                //System.out.println("meta");
                 LinearRing holes[] = null;
 
                 Polygon polygon = gf.createPolygon(ring, holes);
 
             //    polygons_list pol_l = new polygons_list();
               //  pol_l.pll = polygon;
-                pll_list.add(polygon);
+                pll_list[i]=polygon;
 
             }
 
-            Polygon[] polygonSet = new Polygon[pll_list.size()];
-
-            polygonSet=pll_list.toArray(polygonSet);
+//            Polygon[] polygonSet = new Polygon[pll_list.length];
+//
+//            polygonSet=pll_list(polygonSet);
 
 //            int k=0;
 //            for(polygons_list i : pll_list){
@@ -200,7 +207,7 @@ public class ShpReader implements Serializable
 //            }
 
 
-            MultiPolygon multiPolygon = new MultiPolygon(polygonSet, multi_factory);
+            MultiPolygon multiPolygon = new MultiPolygon(pll_list, multi_factory);
 
 //            JtsMultiPolygon mljtspl = new JtsMultiPolygon();
 //

@@ -48,6 +48,10 @@ public class ShpReader implements Serializable
     public transient int numParts;
     public transient int numPoints;
 
+    public  GeometryFactory multi_factory = new GeometryFactory();
+    public GeometryFactory gf=new GeometryFactory();
+
+
     public ShpReader(final DataInputStream dataInputStream) throws IOException
     {
         m_dataInputStream = dataInputStream;
@@ -126,7 +130,7 @@ public class ShpReader implements Serializable
 
             readShapeHeader();
 
-            List<polygons_list> pll_list = new ArrayList<polygons_list>();
+            List<Polygon> pll_list = new ArrayList<Polygon>();
 
             for (int i = 0, j = 1; i < numParts; )
             {
@@ -150,7 +154,7 @@ public class ShpReader implements Serializable
                     }
                 }
 
-                GeometryFactory gf=new GeometryFactory();
+
 
                 LineString lineString = gf.createLineString(coords);
 
@@ -176,32 +180,31 @@ public class ShpReader implements Serializable
 
                 Polygon polygon = gf.createPolygon(ring, holes);
 
-                polygons_list pol_l = new polygons_list();
-                pol_l.pll = polygon;
-                pll_list.add(pol_l);
+            //    polygons_list pol_l = new polygons_list();
+              //  pol_l.pll = polygon;
+                pll_list.add(polygon);
 
             }
 
             Polygon[] polygonSet = new Polygon[pll_list.size()];
 
+            polygonSet=pll_list.toArray(polygonSet);
 
-            GeometryFactory multi_factory = new GeometryFactory();
-
-            int k=0;
-            for(polygons_list i : pll_list){
-
-                polygonSet[k] = i.pll;
-
-                k++;
-
-            }
+//            int k=0;
+//            for(polygons_list i : pll_list){
+//
+//                polygonSet[k] = i.pll;
+//
+//                k++;
+//
+//            }
 
 
             MultiPolygon multiPolygon = new MultiPolygon(polygonSet, multi_factory);
 
-            JtsMultiPolygon mljtspl = new JtsMultiPolygon();
-
-            mljtspl.set_my_multi_polygon(multiPolygon);
+//            JtsMultiPolygon mljtspl = new JtsMultiPolygon();
+//
+//            mljtspl.set_my_multi_polygon(multiPolygon);
 
             PointorMultiPolygon.setPointPnorMlPl(null);
             PointorMultiPolygon.setMultiPolygonPnorMlPl(multiPolygon);

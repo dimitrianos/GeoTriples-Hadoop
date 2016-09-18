@@ -8,7 +8,7 @@
         shp -> for shapefiles
         csv -> for csv files
         -->
-        <value>sp</value>
+        <value>shp</value>
     </property>
 
     <property>

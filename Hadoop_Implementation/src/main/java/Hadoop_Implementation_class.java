@@ -99,7 +99,7 @@ public class Hadoop_Implementation_class
 
         private ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-        private RDFWriter rdfWriter = Rio.createWriter(format,stream);
+        private NTriplesAlternative rdfWriter = new NTriplesAlternative(stream);
 
 
         @Override
@@ -233,6 +233,7 @@ public class Hadoop_Implementation_class
                         String statements_str = stream.toString();
 
                         m_text.set(statements_str);
+                        statements_str=null;
                        // m_text.set(statements_str.substring(0,statements_str.length()-1));
 
                         context.write(m_text, NullWritable.get());

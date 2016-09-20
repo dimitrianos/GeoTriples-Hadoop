@@ -228,13 +228,14 @@ public class Hadoop_Implementation_class
 
                             }
 
-                        rdfWriter.endRDF();
+                        
                            
                            
 
                         
 
                         m_text.set(rdfWriter.getString());
+                        rdfWriter.endRDF();
                        // m_text.set(statements_str.substring(0,statements_str.length()-1));
 
                         context.write(m_text, NullWritable.get());

@@ -103,7 +103,7 @@ public class NTriplesAlternative implements RDFWriter {
         sb.append("\n");
     }
 
-    public StringBuilder getSB(){
-        return sb;
+    public String getString(){
+        return sb.toString();
     }
 }

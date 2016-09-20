@@ -62,6 +62,7 @@ public class NTriplesAlternative implements RDFWriter {
             throw new RuntimeException("Document writing has not yet started");
         }
         this.sb = new StringBuilder(sb.capacity());
+        writingStarted = false;
 //		try {
 //			writer.flush();
 //		}

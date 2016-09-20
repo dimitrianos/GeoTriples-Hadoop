@@ -53,8 +53,6 @@ import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.processor.RMLProcessor;
 import be.ugent.mmlab.rml.processor.RMLProcessorFactory;
 import be.ugent.mmlab.rml.processor.concrete.ConcreteRMLProcessorFactory;
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
 import net.antidot.semantic.rdf.model.impl.sesame.SesameDataSet;
 import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLStructureException;
 import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLSyntaxException;
@@ -236,7 +234,7 @@ public class Hadoop_Implementation_class
 
                         
 
-                      m_text.set((Charset.forName("UTF-8").encode(CharBuffer.wrap(rdfWriter.getSB().getValueOutside(),0,rdfWriter.getSB().getSizeOutside())).array()));
+                        m_text.set(rdfWriter.getString());
                        // m_text.set(statements_str.substring(0,statements_str.length()-1));
 
                         context.write(m_text, NullWritable.get());

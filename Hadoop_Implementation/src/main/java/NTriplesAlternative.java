@@ -23,7 +23,7 @@ public class NTriplesAlternative implements RDFWriter {
     * -----------*/
 
     private boolean writingStarted;
-    private StringBuilderAlternative sb;
+    private StringBuilder sb;
 
     /*--------------*
 	  Constructors *
@@ -36,7 +36,7 @@ public class NTriplesAlternative implements RDFWriter {
      * @param out The OutputStream to write the N-Triples document to.
      */
     public NTriplesAlternative() {
-        this.sb = new StringBuilderAlternative(1024);
+        this.sb = new StringBuilder(1024);
         writingStarted = false;
     }
 
@@ -61,8 +61,8 @@ public class NTriplesAlternative implements RDFWriter {
         if (!writingStarted) {
             throw new RuntimeException("Document writing has not yet started");
         }
-        
-        this.sb = new StringBuilderAlternative(sb.capacity());
+        this.sb.setLength(0);
+        //this.sb = new StringBuilder(sb.capacity());
         writingStarted = false;
 //		try {
 //			writer.flush();
@@ -103,7 +103,7 @@ public class NTriplesAlternative implements RDFWriter {
         sb.append("\n");
     }
 
-    public StringBuilderAlternative getSB(){
+    public StringBuilder getSB(){
         return sb;
     }
 }

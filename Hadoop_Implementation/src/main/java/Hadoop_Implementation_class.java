@@ -57,6 +57,8 @@ import net.antidot.semantic.rdf.model.impl.sesame.SesameDataSet;
 import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLStructureException;
 import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLSyntaxException;
 import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.R2RMLDataError;
+import org.openrdf.model.Literal;
+import org.openrdf.model.impl.LiteralImpl;
 
 
 
@@ -99,7 +101,7 @@ public class Hadoop_Implementation_class
 
         private ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-        private NTriplesAlternative rdfWriter = new NTriplesAlternative(stream);
+        private NTriplesAlternative rdfWriter = new NTriplesAlternative();
 
 
         @Override
@@ -208,9 +210,8 @@ public class Hadoop_Implementation_class
                         e.printStackTrace();
                     }
 
-
                 Collection<Statement> statements = performer.perform(row, outputDataSet,tm);
-
+                
                 stream.reset();
                // ByteArrayOutputStream stream = new ByteArrayOutputStream();
                // RDFWriter rdfWriter = Rio.createWriter(format,stream);
@@ -228,12 +229,12 @@ public class Hadoop_Implementation_class
                             }
 
                         rdfWriter.endRDF();
+                           
+                           
 
+                        
 
-                        String statements_str = stream.toString();
-
-                        m_text.set(statements_str);
-                        statements_str=null;
+                        m_text.set(rdfWriter.getString());
                        // m_text.set(statements_str.substring(0,statements_str.length()-1));
 
                         context.write(m_text, NullWritable.get());

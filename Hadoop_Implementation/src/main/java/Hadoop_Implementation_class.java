@@ -79,7 +79,7 @@ public class Hadoop_Implementation_class
 
         private RDFFormat format = RDFFormat.NTRIPLES;
 
-        private SesameDataSet outputDataSet = new SesameDataSet();
+        private SesameDataSet outputDataSet = new NullDataSet();
 
         private String m;
 

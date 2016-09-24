@@ -30,10 +30,8 @@ public class NTriplesAlternative implements RDFWriter {
 	 --------------*/
 
     /**
-     * Creates a new NTriplesWriter that will write to the supplied
-     * OutputStream.
+     * Creates a new NTriplesWriter that will write to a StringBuilder.
      *
-     * @param out The OutputStream to write the N-Triples document to.
      */
     public NTriplesAlternative() {
         this.sb = new StringBuilder(1024);
@@ -43,10 +41,12 @@ public class NTriplesAlternative implements RDFWriter {
     /*---------*
 	 * Methods *
     * ---------*/
+    @Override
     public RDFFormat getRDFFormat() {
         return RDFFormat.NTRIPLES;
     }
 
+    @Override
     public void startRDF()
             throws RDFHandlerException {
         if (writingStarted) {
@@ -56,6 +56,7 @@ public class NTriplesAlternative implements RDFWriter {
         writingStarted = true;
     }
 
+    @Override
     public void endRDF()
             throws RDFHandlerException {
         if (!writingStarted) {
@@ -75,10 +76,12 @@ public class NTriplesAlternative implements RDFWriter {
 //		}
     }
 
+    @Override
     public void handleNamespace(String prefix, String name) {
         // N-Triples does not support namespace prefixes.
     }
 
+    @Override
     public void handleStatement(Statement st)
             throws RDFHandlerException {
         if (!writingStarted) {
@@ -90,13 +93,14 @@ public class NTriplesAlternative implements RDFWriter {
             sb.append(" ");
             NTriplesUtil.append(st.getPredicate(), sb);
             sb.append(" ");
-            NTriplesUtil.append(st.getObject(), sb);
+            NTriplesUtilNoEscape.append(st.getObject(), sb);
             sb.append(" .\n");
         } catch (IOException e) {
             throw new RDFHandlerException(e);
         }
     }
 
+    @Override
     public void handleComment(String comment){
         sb.append("# ");
         sb.append(comment);

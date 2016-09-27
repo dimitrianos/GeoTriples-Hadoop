@@ -1,13 +1,15 @@
 package com.esri.shp;
 
+
 import com.esri.jts_extras.PointorMultiPolygon;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateFilter;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.MultiPolygon;
-import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.geom.Polygon;
+
+import org.apache.commons.io.EndianUtils;
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.Serializable;
@@ -113,8 +115,7 @@ public class ShpReader implements Serializable {
 
             readShapeHeader();
 
-            Polygon[] pll_list = new Polygon[numParts];
-            //List<Polygon> pll_list = new ArrayList<Polygon>();
+            Polygon[] pll_list=new Polygon[numParts];
 
             for (int i = 0, j = 1; i < numParts; ++i) {
 
@@ -135,54 +136,33 @@ public class ShpReader implements Serializable {
                     }
                 }
 
-                //LineString lineString = gf.createLineString(coords);
-//System.out.println("geia sas");
-                LinearRing ring = null;
-                if (coords[coords.length - 1].equals(coords[0])) {
-                    //if( lineString.isClosed() )
 
-                } else {
-                    //coords[coords.length-1]=coords[0];
-                    //CoordinateSequence sequence = lineString.getCoordinateSequence();
-                    coords = Arrays.copyOf(coords, coords.length + 1);
-                    coords[coords.length - 1] = coords[0];
-//                    for( int n=0; n<sequence.size();n++){
-//
-//                        array[n] = sequence.getCoordinate(n);
-//
-//                    }
-//                    array[array.length-1] = sequence.getCoordinate(0);
-//                    ring = gf.createLinearRing( array );
+                LinearRing ring= null;
+                if( coords[coords.length-1].equals(coords[0])) {
+
+
                 }
-                //System.out.println("prin");
+                else {
+
+                    coords = Arrays.copyOf(coords,coords.length+1);
+                    coords[coords.length-1]=coords[0];
+
+                }
+
                 ring = gf.createLinearRing(coords);
-                //System.out.println("meta");
+
                 LinearRing holes[] = null;
 
                 Polygon polygon = gf.createPolygon(ring, holes);
 
-                //    polygons_list pol_l = new polygons_list();
-                //  pol_l.pll = polygon;
-                pll_list[i] = polygon;
+                pll_list[i]=polygon;
 
             }
 
-//            Polygon[] polygonSet = new Polygon[pll_list.length];
-//
-//            polygonSet=pll_list(polygonSet);
-//            int k=0;
-//            for(polygons_list i : pll_list){
-//
-//                polygonSet[k] = i.pll;
-//
-//                k++;
-//
-//            }
+
             MultiPolygon multiPolygon = new MultiPolygon(pll_list, multi_factory);
 
-//            JtsMultiPolygon mljtspl = new JtsMultiPolygon();
-//
-//            mljtspl.set_my_multi_polygon(multiPolygon);
+
             PointorMultiPolygon.setPointPnorMlPl(null);
             PointorMultiPolygon.setMultiPolygonPnorMlPl(multiPolygon);
             PointorMultiPolygon.setMultiPolygonorPoint_Shapetype(shapeType);
@@ -216,12 +196,5 @@ public class ShpReader implements Serializable {
         }
         m_parts[numParts] = numPoints;
 
-    }
-
-    public class polygons_list {
-
-        private Polygon pll;
-
-    }
 
 }

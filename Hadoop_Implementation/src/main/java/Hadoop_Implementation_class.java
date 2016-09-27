@@ -57,8 +57,7 @@ import net.antidot.semantic.rdf.model.impl.sesame.SesameDataSet;
 import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLStructureException;
 import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLSyntaxException;
 import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.R2RMLDataError;
-import org.openrdf.model.Literal;
-import org.openrdf.model.impl.LiteralImpl;
+
 
 
 
@@ -209,10 +208,7 @@ public class Hadoop_Implementation_class
                     }
 
                 Collection<Statement> statements = performer.perform(row, outputDataSet,tm);
-                
-                
-               // ByteArrayOutputStream stream = new ByteArrayOutputStream();
-               // RDFWriter rdfWriter = Rio.createWriter(format,stream);
+
 
                     try {
 
@@ -225,9 +221,6 @@ public class Hadoop_Implementation_class
 
 
                             }
-
-                        
-                           
                            
 
                         
@@ -252,187 +245,9 @@ public class Hadoop_Implementation_class
     }
 
 
-
-    public static class ShapeFileReduce
-            extends Reducer<Text, NullWritable,Writable,NullWritable> {
-
-        @Override
-        protected void reduce(Text key, Iterable<NullWritable> values, Context context) throws IOException, InterruptedException {
-            System.out.println("The key is:" + key.toString());
-
-            for (NullWritable val : values) {
-
-                System.out.println(val.toString());
-            }
-            context.write(key, NullWritable.get());
-        }
-
-    }
-
-
-
-////csv
-//    public static class CsvFileMap extends
-//            Mapper<LongWritable, Text, NullWritable, Writable> {
-//
-//
-//        private final Text m_text = new Text();
-//
-//        private List<String> field_titles;
-//
-//        private ListregisterFunctions();<String> field_values;
-//
-//        private String m;
-//
-//        private byte[] valueDecoded;
-//
-//        private Map<String,KeyGenerator> keygens = new HashMap<String,KeyGenerator>();
-//
-//        private RMLProcessorFactory factory = new ConcreteRMLProcessorFactory();
-//
-//        private RMLProcessor processor;
-//
-//        private NodeRMLPerformer performer;
-//
-//        private List<TriplesMap> list_map;
-//
-//        private RDFFormat format = RDFFormat.NTRIPLES;
-//
-//        private SesameDataSet outputDataSet = new SesameDataSet();
-//
-//        private int k=0;
-//
-//
-//        public void map(
-//                final LongWritable key,
-//                final Text val,
-//                final Context context) throws IOException, InterruptedException {
-//
-//
-//            String line = val.toString();
-//
-//            long key_value=key.get();
-//
-//
-//            //read titles on first line
-//            if(key_value==0) {
-//
-//                //input filename to used on geotriples id's
-//                String filename = ((FileSplit) context.getInputSplit()).getPath().getName();
-//
-//                eu.linkedeodata.geotriples.Config.variables.put("filename",filename);
-//
-//
-//                field_titles = Arrays.asList(line.split(","));
-//
-//                //read the mapping file (deserialize)
-//                Configuration conf = context.getConfiguration();
-//
-//                m = conf.get("triplemap");
-//
-//                valueDecoded = Base64.decodeBase64(m.getBytes());
-//
-//                try {
-//
-//                    ObjectInputStream si = new ObjectInputStream( new ByteArrayInputStream(valueDecoded) );
-//
-//                    list_map = (List<TriplesMap>) si.readObject();
-//
-//                    for(TriplesMap tm:list_map) {
-//
-//                        keygens.put(tm.getName(),new KeyGenerator());
-//
-//                    }
-//
-//                } catch (Exception e) {
-//
-//                    System.out.println(e);
-//
-//                }
-//
-//                k++;
-//
-//
-//            }
-//            else {
-//
-//
-//                for(TriplesMap tm : list_map){
-//
-//                    processor = factory.create(tm.getLogicalSource().getReferenceFormulation());
-//
-//                    performer = new NodeRMLPerformer(processor);
-//
-//                    HashMap<String, Object> row = new HashMap();
-//
-//                    try {
-//
-//                        //write the attribute's titles and values
-//                        field_values = Arrays.asList(line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"));
-//
-//
-//                        int field_titles_index = 0;
-//
-//
-//                        for(String a : field_titles) {
-//
-//                            //row.put(a,field_values.get(field_titles_index));
-//                            row.put(a,field_values.get(field_titles_index).replaceAll("\"",""));
-//
-//                            field_titles_index++;
-//
-//                        }
-//
-//                        row.put(Config.GEOTRIPLES_AUTO_ID,keygens.get(tm.getName()).Generate());
-//
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//
-//
-//                    Collection<Statement> statements = performer.perform(row, outputDataSet,tm);
-//
-//                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                    RDFWriter rdfWriter = Rio.createWriter(format,stream);
-//
-//
-//                    try {
-//
-//                        rdfWriter.startRDF();
-//
-//
-//                        for(Statement st : statements){
-//
-//                            rdfWriter.handleStatement(st);
-//
-//                        }
-//
-//                        rdfWriter.endRDF();
-//
-//                        m_text.set(stream.toString());
-//
-//                        context.write(NullWritable.get(), m_text);
-//
-//                    } catch (RDFHandlerException e) {
-//
-//
-//                        e.printStackTrace();
-//                    }
-//
-//
-//                }
-//
-//            }
-//
-//
-//        }
-//    }
-
-
-
     //csv_with bufferer reader
     public static class CsvFileMap extends
-            Mapper<LongWritable, Text, NullWritable, Writable> {
+            Mapper<LongWritable, Text, Writable, NullWritable> {
 
 
         private final Text m_text = new Text();
@@ -462,6 +277,10 @@ public class Hadoop_Implementation_class
         private SesameDataSet outputDataSet = new SesameDataSet();
 
         private int k=0;
+
+        private ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+        private NTriplesAlternative rdfWriter = new NTriplesAlternative();
 
 
         public void map(
@@ -516,12 +335,12 @@ public class Hadoop_Implementation_class
 
                     }
 
+                    registerFunctions();
                     k++;
 
 
                 }
 
-                registerFunctions();
 
                 for (TriplesMap tm : list_map) {
 
@@ -542,7 +361,6 @@ public class Hadoop_Implementation_class
 
                         for (String a : field_titles) {
 
-                            //row.put(a,field_values.get(field_titles_index));
                             row.put(a, field_values.get(field_titles_index).replaceAll("\"", ""));
 
                             field_titles_index++;
@@ -558,8 +376,7 @@ public class Hadoop_Implementation_class
 
                     Collection<Statement> statements = performer.perform(row, outputDataSet, tm);
 
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    RDFWriter rdfWriter = Rio.createWriter(format, stream);
+                    stream.reset();
 
 
                     try {
@@ -573,11 +390,10 @@ public class Hadoop_Implementation_class
 
                         }
 
+                        m_text.set(rdfWriter.getString());
                         rdfWriter.endRDF();
 
-                        m_text.set(stream.toString());
-
-                        context.write(NullWritable.get(), m_text);
+                        context.write(m_text, NullWritable.get());
 
                     } catch (RDFHandlerException e) {
 
@@ -593,6 +409,23 @@ public class Hadoop_Implementation_class
 
         }
     }
+
+
+
+    public static class GeneralReduce
+            extends Reducer<Text, NullWritable,Writable,NullWritable> {
+
+        @Override
+        protected void reduce(Text key, Iterable<NullWritable> values, Context context) throws IOException, InterruptedException {
+
+
+
+            context.write(key, NullWritable.get());
+        }
+
+    }
+
+
 
 
 
@@ -709,8 +542,7 @@ public class Hadoop_Implementation_class
 
                 job.setNumReduceTasks(Integer.parseInt(conf.get("reducers_number")));
 
-                //job.setCombinerClass(ShapeFileReduce.class);
-                job.setReducerClass(ShapeFileReduce.class);
+                job.setReducerClass(GeneralReduce.class);
 
                 job.setInputFormatClass(PointMultiPolygonFeatureInputFormat.class);
                 job.setOutputFormatClass(TextOutputFormat.class);
@@ -785,19 +617,21 @@ public class Hadoop_Implementation_class
 
                 conf.set("header_values",header_values);
 
+                //read mapping file (serialize) and pass it to configuration
+                conf.set("triplemap",all_triples_maps(conf.get("mapping_file")));
+
 
                 Job job = Job.getInstance(conf, "geotriples");
 
                 job.setJarByClass(Hadoop_Implementation_class.class);
                 job.setMapperClass(CsvFileMap.class);
 
-                job.setMapOutputKeyClass(NullWritable.class);
-                job.setMapOutputValueClass(Text.class);
+                job.setMapOutputKeyClass(Text.class);
+                job.setMapOutputValueClass(NullWritable.class);
 
                 job.setNumReduceTasks(Integer.parseInt(conf.get("reducers_number")));
 
-                job.setCombinerClass(ShapeFileReduce.class);
-                job.setReducerClass(ShapeFileReduce.class);
+                job.setReducerClass(GeneralReduce.class);
 
                 job.setInputFormatClass(TextInputFormat.class);
                 job.setOutputFormatClass(TextOutputFormat.class);
@@ -810,6 +644,25 @@ public class Hadoop_Implementation_class
 
 
                 job.waitForCompletion(true);
+
+
+                TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
+
+                System.out.println(map_reports.length);
+                for(TaskReport report : map_reports) {
+
+                    long time = report.getFinishTime() - report.getStartTime();
+                    System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
+                }
+
+                TaskReport[] reduce_reports = job.getTaskReports(TaskType.REDUCE);
+
+                System.out.println(reduce_reports.length);
+                for(TaskReport report : reduce_reports) {
+
+                    long time = report.getFinishTime() - report.getStartTime();
+                    System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
+                }
 
 
                 if(conf.get("merge").equals("1")) {
@@ -834,28 +687,6 @@ public class Hadoop_Implementation_class
 
                 }
 
-
-                TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
-
-                System.out.println(map_reports.length);
-                for(TaskReport report : map_reports) {
-
-                    long time = report.getFinishTime() - report.getStartTime();
-                    System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
-                }
-
-                TaskReport[] reduce_reports = job.getTaskReports(TaskType.REDUCE);
-
-                System.out.println(reduce_reports.length);
-                for(TaskReport report : reduce_reports) {
-
-                    long time = report.getFinishTime() - report.getStartTime();
-                    System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
-                }
-
-
-
-
             }
             else {
 
@@ -878,313 +709,5 @@ public class Hadoop_Implementation_class
     }
 
 }
-
-
-
-
-
-
-//        //shapefile
-//        if(args[0].equals("shp")) {
-//
-//
-//            Configuration conf = new Configuration();
-//
-//            //read mapping file (serialize) and pass it to configuration
-//            //conf.set("triplemap",all_triples_maps());
-//
-//            Job job = Job.getInstance(conf, "geotriples");
-//
-//            job.setJarByClass(Hadoop_Implementation_class.class);
-//            job.setMapperClass(ShapeFileMap.class);
-//
-//            job.setMapOutputKeyClass(Text.class);
-//            job.setMapOutputValueClass(NullWritable.class);
-//
-//
-//            job.setNumReduceTasks(Integer.parseInt(args[3]));
-//
-//            //job.setCombinerClass(ShapeFileReduce.class);
-//            job.setReducerClass(ShapeFileReduce.class);
-//
-//            job.setInputFormatClass(PointMultiPolygonFeatureInputFormat.class);
-//            job.setOutputFormatClass(TextOutputFormat.class);
-//
-//
-//            //local
-//           FileInputFormat.addInputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[1]));
-////            //FileInputFormat.setInputDirRecursive(job,true);
-//          FileOutputFormat.setOutputPath(job, new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]));
-//
-//            //hdfs
-//            //FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/"+args[1]));
-//            //FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/hadoop/"+args[2]));
-//
-//
-//            job.waitForCompletion(true);
-
-
-
-
-
-//            FileSystem fileSystem = FileSystem.get(conf);
-//
-//
-//            Path source = new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/"+args[2]);
-//
-//            Path target = new Path(System.getProperty("user.dir")+"/Hadoop_Implementation/new");
-//
-//
-//            FileUtil.copyMerge(fileSystem, source,fileSystem, target, true , conf, null);
-//
-//
-//            fileSystem.rename(target,source);
-
-
-
-
-//
-//
-//            TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
-//
-//            System.out.println(map_reports.length);
-//            for(TaskReport report : map_reports) {
-//
-//                long time = report.getFinishTime() - report.getStartTime();
-//                System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
-//            }
-//
-//            TaskReport[] reduce_reports = job.getTaskReports(TaskType.REDUCE);
-//
-//            System.out.println(reduce_reports.length);
-//            for(TaskReport report : reduce_reports) {
-//
-//                long time = report.getFinishTime() - report.getStartTime();
-//                System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
-//            }
-//
-//
-//        }
-//        //csv
-//        else if(args[0].equals("csv")) {
-//
-//            Configuration conf = new Configuration();
-//
-//            //read mapping file (serialize) and pass it to configuration
-//            //conf.set("triplemap",all_triples_maps());
-//
-//
-//
-//
-//            File folder = new File("Hadoop_Implementation/"+args[2]);
-//            File[] listOfFiles = folder.listFiles();
-//
-//            String filename = listOfFiles[0].getName();
-//
-//            BufferedReader br = new BufferedReader(new FileReader("Hadoop_Implementation/"+args[2]+"/"+filename));
-//
-//            String header_values = br.readLine();
-//
-//
-//            conf.set("header_values",header_values);
-//
-//
-//            Job job = Job.getInstance(conf, "word count");
-//
-//            job.setJarByClass(Hadoop_Implementation_class.class);
-//            job.setMapperClass(CsvFileMap.class);
-//
-//            job.setMapOutputKeyClass(NullWritable.class);
-//            job.setMapOutputValueClass(Text.class);
-//
-//            job.setNumReduceTasks(1);
-//
-//            job.setCombinerClass(ShapeFileReduce.class);
-//            job.setReducerClass(ShapeFileReduce.class);
-//
-//            job.setInputFormatClass(TextInputFormat.class);
-//            job.setOutputFormatClass(TextOutputFormat.class);
-//
-//
-//
-//            //local
-//            //FileInputFormat.addInputPath(job, new Path("Hadoop_Implementation/"+args[2]));
-//            //FileInputFormat.setInputDirRecursive(job,true);
-//            //FileOutputFormat.setOutputPath(job, new Path("Hadoop_Implementation/"+args[3]));
-//
-//            //hdfs
-//            //  FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[2]));
-//            //FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[3]));
-//
-//            job.waitForCompletion(true);
-//
-//            TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
-//
-//            System.out.println(map_reports.length);
-//            for(TaskReport report : map_reports) {
-//
-//                long time = report.getFinishTime() - report.getStartTime();
-//                System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
-//            }
-//
-//            TaskReport[] reduce_reports = job.getTaskReports(TaskType.MAP);
-//
-//            System.out.println(reduce_reports.length);
-//            for(TaskReport report : reduce_reports) {
-//
-//                long time = report.getFinishTime() - report.getStartTime();
-//                System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
-//            }
-//
-//
-//
-//        }
-
-
-
-
-
-
-
-
-
-
-//        Configuration conf = new Configuration();
-//
-//
-//
-//
-//        //read mapping file (serialize) and pass it to configuration
-//        conf.set("triplemap",all_triples_maps());
-//
-////
-////
-////        conf.addResource(new File("hdfs_in/myconf_local.xml").getAbsoluteFile().toURI().toURL());
-////
-////
-////        System.out.println("FFFFFFFFFF " + conf);
-////
-////        System.out.println("GGGGGGGGGG " + conf.get("var1"));
-//
-//
-//
-//        //Shapefile
-////
-//
-//
-//        Job job = Job.getInstance(conf, "geotriples");
-//
-//
-//
-//        job.setJarByClass(Hadoop_Implementation_class.class);
-//        job.setMapperClass(ShapeFileMap.class);
-//
-//        job.setMapOutputKeyClass(NullWritable.class);
-//        job.setMapOutputValueClass(Text.class);
-//
-//        job.setNumReduceTasks(1);
-//
-//        job.setCombinerClass(ShapeFileReduce.class);
-//        job.setReducerClass(ShapeFileReduce.class);
-//
-//        job.setInputFormatClass(PointMultiPolygonFeatureInputFormat.class);
-//        job.setOutputFormatClass(TextOutputFormat.class);
-//
-//
-//
-//        //csv
-////         Job job = Job.getInstance(conf, "word count");
-////
-////        job.setJarByClass(Hadoop_Implementation_class.class);
-////        job.setMapperClass(CsvFileMap.class);
-////
-////        job.setMapOutputKeyClass(NullWritable.class);
-////        job.setMapOutputValueClass(Text.class);
-////
-////        job.setNumReduceTasks(1);
-////
-////        job.setCombinerClass(ShapeFileReduce.class);
-////        job.setReducerClass(ShapeFileReduce.class);
-////
-////        job.setInputFormatClass(TextInputFormat.class);
-////        job.setOutputFormatClass(TextOutputFormat.class);
-//
-//
-////        //csv with buffered reader
-////
-////        File folder = new File("Hadoop_Implementation/input");
-////        File[] listOfFiles = folder.listFiles();
-////
-//////        for (int i = 0; i < listOfFiles.length; i++) {
-//////            if (listOfFiles[i].isFile()) {
-//////                System.out.println("File " + listOfFiles[i].getName());
-//////            } else if (listOfFiles[i].isDirectory()) {
-//////                System.out.println("Directory " + listOfFiles[i].getName());
-//////            }
-//////        }
-////
-////
-////        String filename = listOfFiles[0].getName();
-////
-////        BufferedReader br = new BufferedReader(new FileReader("Hadoop_Implementation/input/"+filename));
-////
-////        String header_values = br.readLine();
-////
-////
-////
-////        conf.set("header_values",header_values);
-////
-////
-////        Job job = Job.getInstance(conf, "word count");
-////
-////        job.setJarByClass(Hadoop_Implementation_class.class);
-////        job.setMapperClass(CsvFileMap.class);
-////
-////        job.setMapOutputKeyClass(NullWritable.class);
-////        job.setMapOutputValueClass(Text.class);
-////
-////        job.setNumReduceTasks(1);
-////
-////        job.setCombinerClass(ShapeFileReduce.class);
-////        job.setReducerClass(ShapeFileReduce.class);
-////
-////        job.setInputFormatClass(TextInputFormat.class);
-////        job.setOutputFormatClass(TextOutputFormat.class);
-//
-//
-//
-//
-//
-//
-//        //local
-//        FileInputFormat.addInputPath(job, new Path("Hadoop_Implementation/input"));
-//        //FileInputFormat.setInputDirRecursive(job,true);
-//        FileOutputFormat.setOutputPath(job, new Path("Hadoop_Implementation/output"));
-//
-//        //hdfs
-//      //  FileInputFormat.addInputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[0]));
-//        //FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop-p2-1:9000/"+args[1]));
-//
-//
-//
-//        job.waitForCompletion(true);
-//
-//        TaskReport[] map_reports = job.getTaskReports(TaskType.MAP);
-//
-//        System.out.println(map_reports.length);
-//        for(TaskReport report : map_reports) {
-//
-//            long time = report.getFinishTime() - report.getStartTime();
-//            System.out.println("Map: " + report.getTaskId() + " took " + time + " millis!");
-//        }
-//
-//        TaskReport[] reduce_reports = job.getTaskReports(TaskType.MAP);
-//
-//        System.out.println(reduce_reports.length);
-//        for(TaskReport report : reduce_reports) {
-//
-//            long time = report.getFinishTime() - report.getStartTime();
-//            System.out.println("Reduce: " + report.getTaskId() + " took " + time + " millis!");
-//        }
 
 

@@ -30,5 +30,4 @@ class NullDataSet extends SesameDataSet {
         return;
     }
     
-    
 }

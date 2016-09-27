@@ -7,6 +7,8 @@ import com.vividsolutions.jts.geom.CoordinateFilter;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.MultiPolygon;
+import com.vividsolutions.jts.geom.Point;
+import com.vividsolutions.jts.geom.Polygon;
 
 import org.apache.commons.io.EndianUtils;
 
@@ -197,4 +199,5 @@ public class ShpReader implements Serializable {
         m_parts[numParts] = numPoints;
 
 
+}
 }

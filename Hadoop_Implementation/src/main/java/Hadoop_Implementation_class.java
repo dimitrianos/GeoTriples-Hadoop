@@ -7,11 +7,8 @@ import com.esri.mapreduce.PointMultiPolygonFeatureInputFormat;
 
 import org.apache.commons.codec.binary.Base64;
 
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.*;
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileUtil;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.*;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -601,12 +598,18 @@ public class Hadoop_Implementation_class
             else if(conf.get("files_format").equals("csv")) {
 
 
-                File folder = new File(conf.get("input_dir"));
-                File[] listOfFiles = folder.listFiles();
+                FileSystem fs_csv = FileSystem.get(conf);
 
-                String filename = listOfFiles[0].getName();
+                FileStatus[] status = fs.listStatus(new Path(conf.get("input_dir")));
 
-                BufferedReader br = new BufferedReader(new FileReader(conf.get("input_dir")+"/"+filename));
+                //File folder = new File(conf.get("input_dir"));
+                //File[] listOfFiles = folder.listFiles();
+
+                //String filename = listOfFiles[0].getName();
+
+                //BufferedReader br = new BufferedReader(new FileReader(conf.get("input_dir")+"/"+filename));
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(status[0].getPath())));
 
                 String header_values = br.readLine();
 

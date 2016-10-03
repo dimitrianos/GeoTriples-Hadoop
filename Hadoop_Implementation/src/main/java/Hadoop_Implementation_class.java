@@ -1,6 +1,4 @@
 
-
-
 import be.ugent.mmlab.rml.core.KeyGenerator;
 
 import com.esri.io.PointMultiPolygonFeatureWritable;
@@ -274,11 +272,9 @@ public class Hadoop_Implementation_class
 
         private RDFFormat format = RDFFormat.NTRIPLES;
 
-        private SesameDataSet outputDataSet = new SesameDataSet();
+        private SesameDataSet outputDataSet = new NullDataSet();
 
         private int k=0;
-
-        private ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
         private NTriplesAlternative rdfWriter = new NTriplesAlternative();
 
@@ -376,7 +372,7 @@ public class Hadoop_Implementation_class
 
                     Collection<Statement> statements = performer.perform(row, outputDataSet, tm);
 
-                    stream.reset();
+
 
 
                     try {

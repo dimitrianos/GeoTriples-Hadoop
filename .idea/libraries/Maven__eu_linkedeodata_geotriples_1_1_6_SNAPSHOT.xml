@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: eu.linkedeodata:geotriples:1.1.6-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/eu/linkedeodata/geotriples/1.1.6-SNAPSHOT/geotriples-1.1.6-20160619.140937-1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/eu/linkedeodata/geotriples/1.1.6-SNAPSHOT/geotriples-1.1.6-20160923.225630-1.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/eu/linkedeodata/geotriples/1.1.6-SNAPSHOT/geotriples-1.1.6-20160619.140937-1-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/eu/linkedeodata/geotriples/1.1.6-SNAPSHOT/geotriples-1.1.6-20160923.225630-1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/eu/linkedeodata/geotriples/1.1.6-SNAPSHOT/geotriples-1.1.6-20160619.140937-1-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/eu/linkedeodata/geotriples/1.1.6-SNAPSHOT/geotriples-1.1.6-20160923.225630-1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

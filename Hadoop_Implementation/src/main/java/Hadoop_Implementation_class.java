@@ -253,8 +253,6 @@ public class Hadoop_Implementation_class
 
         private String m;
 
-        private String header_values;
-
         private byte[] valueDecoded;
 
         private Map<String,KeyGenerator> keygens = new HashMap<String,KeyGenerator>();
@@ -276,6 +274,7 @@ public class Hadoop_Implementation_class
         private NTriplesAlternative rdfWriter = new NTriplesAlternative();
 
 
+
         public void map(
                 final LongWritable key,
                 final Text val,
@@ -284,11 +283,17 @@ public class Hadoop_Implementation_class
 
             String line = val.toString();
 
-            //ignore line with headers
+
 
             long key_value = key.get();
 
-            if (key_value != 0) {
+            //header values
+            if(key_value==0){
+
+                field_titles = Arrays.asList(line.split(","));
+
+            }
+            else {
 
                 //read titles and triples map
                 if (k == 0) {
@@ -301,10 +306,6 @@ public class Hadoop_Implementation_class
 
                     //read the mapping file (deserialize) and headers
                     Configuration conf = context.getConfiguration();
-
-                    header_values = conf.get("header_values");
-
-                    field_titles = Arrays.asList(header_values.split(","));
 
                     m = conf.get("triplemap");
 
@@ -371,7 +372,6 @@ public class Hadoop_Implementation_class
 
 
 
-
                     try {
 
                         rdfWriter.startRDF();
@@ -395,10 +395,10 @@ public class Hadoop_Implementation_class
                     }
 
 
+
                 }
 
             }
-
 
         }
     }
@@ -597,24 +597,6 @@ public class Hadoop_Implementation_class
             //csv
             else if(conf.get("files_format").equals("csv")) {
 
-
-                FileSystem fs_csv = FileSystem.get(conf);
-
-                FileStatus[] status = fs.listStatus(new Path(conf.get("input_dir")));
-
-                //File folder = new File(conf.get("input_dir"));
-                //File[] listOfFiles = folder.listFiles();
-
-                //String filename = listOfFiles[0].getName();
-
-                //BufferedReader br = new BufferedReader(new FileReader(conf.get("input_dir")+"/"+filename));
-
-                BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(status[0].getPath())));
-
-                String header_values = br.readLine();
-
-
-                conf.set("header_values",header_values);
 
                 //read mapping file (serialize) and pass it to configuration
                 conf.set("triplemap",all_triples_maps(conf.get("mapping_file")));

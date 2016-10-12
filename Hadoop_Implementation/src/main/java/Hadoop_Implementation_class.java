@@ -240,7 +240,7 @@ public class Hadoop_Implementation_class
     }
 
 
-    //csv_with bufferer reader
+    //csv
     public static class CsvFileMap extends
             Mapper<LongWritable, Text, Writable, NullWritable> {
 

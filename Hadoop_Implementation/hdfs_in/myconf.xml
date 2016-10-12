@@ -48,8 +48,8 @@
         <name>merge</name>
         <!--
         Merge the result,
-        0 -> for no merge
-        default value is 1 -> for merge
+        default value is 0 -> for no merge
+        1 -> for merge
         -->
         <value>0</value>
     </property>

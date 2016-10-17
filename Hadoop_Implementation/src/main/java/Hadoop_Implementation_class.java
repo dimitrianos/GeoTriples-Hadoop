@@ -253,6 +253,8 @@ public class Hadoop_Implementation_class
 
         private String m;
 
+        private String header_values;
+
         private byte[] valueDecoded;
 
         private Map<String,KeyGenerator> keygens = new HashMap<String,KeyGenerator>();
@@ -288,12 +290,13 @@ public class Hadoop_Implementation_class
             long key_value = key.get();
 
             //header values
-            if(key_value==0){
 
-                field_titles = Arrays.asList(line.split(","));
+            if(key_value!=0){
 
-            }
-            else {
+                //field_titles = Arrays.asList(line.split(","));
+                //System.out.println("AAAAAAAAAA");
+
+
 
                 //read titles and triples map
                 if (k == 0) {
@@ -301,11 +304,15 @@ public class Hadoop_Implementation_class
                     //input filename to used on geotriples id's
                     String filename = ((FileSplit) context.getInputSplit()).getPath().getName();
 
-                    eu.linkedeodata.geotriples.Config.variables.put("filename", filename);
+                    eu.linkedeodata.geotriples.Config.variables.put("filename", filename + key_value);
 
 
                     //read the mapping file (deserialize) and headers
                     Configuration conf = context.getConfiguration();
+
+                    header_values = conf.get("header_values");
+
+                    field_titles = Arrays.asList(header_values.split(","));
 
                     m = conf.get("triplemap");
 
@@ -334,6 +341,7 @@ public class Hadoop_Implementation_class
 
 
                 }
+
 
 
                 for (TriplesMap tm : list_map) {
@@ -596,6 +604,17 @@ public class Hadoop_Implementation_class
             }
             //csv
             else if(conf.get("files_format").equals("csv")) {
+
+                FileSystem fs_csv = FileSystem.get(conf);
+
+                FileStatus[] status = fs.listStatus(new Path(conf.get("input_dir")));
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(status[0].getPath())));
+
+                String header_values = br.readLine();
+
+
+                conf.set("header_values",header_values);
 
 
                 //read mapping file (serialize) and pass it to configuration

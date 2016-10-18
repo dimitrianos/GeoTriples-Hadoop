@@ -41,7 +41,7 @@
         The number of the reducers,
         default value is 0 -> for no reduce job
         -->
-        <value>0</value>
+        <value>2</value>
     </property>
 
     <property>

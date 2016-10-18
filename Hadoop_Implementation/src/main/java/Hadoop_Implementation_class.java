@@ -304,7 +304,7 @@ public class Hadoop_Implementation_class
                     //input filename to used on geotriples id's
                     String filename = ((FileSplit) context.getInputSplit()).getPath().getName();
 
-                    eu.linkedeodata.geotriples.Config.variables.put("filename", filename + key_value);
+                    eu.linkedeodata.geotriples.Config.variables.put("filename", filename + "_" + key_value);
 
 
                     //read the mapping file (deserialize) and headers

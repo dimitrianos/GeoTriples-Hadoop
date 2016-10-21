@@ -11,7 +11,7 @@
 
 <#AFG_adm1>
 rml:logicalSource [
-	rml:source "/Users/admin/Downloads/AFG_adm_shp/AFG_adm1.shp";
+	rml:source "/media/media_first/Downloads/Geotriples-Hadoop/Hadoop_Implementation/input";
 	rml:referenceFormulation ql:SHP;
 	rml:iterator "AFG_adm1";
 ];

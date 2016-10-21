@@ -23,6 +23,8 @@
         <name>input_dir</name>
         <!--
         The path to the input directory
+        value="default"  -> get the input directory from the mapping file
+        value=<your_input> -> override the input directory from the mapping file
         -->
         <value>hdfs://hadoop-p2-1:9000/hadoop/input</value>
     </property>

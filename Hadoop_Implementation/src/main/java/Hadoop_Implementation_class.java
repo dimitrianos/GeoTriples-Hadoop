@@ -466,9 +466,12 @@ public class Hadoop_Implementation_class
 
     }
 
-        public static String all_triples_maps(String mapping_file_path)
+        public static List<String> all_triples_maps(String mapping_file_path)
                 throws RepositoryException, R2RMLDataError, RDFParseException, IOException, InvalidR2RMLSyntaxException, InvalidR2RMLStructureException {
 
+            List<String> source_and_mapping = new ArrayList<>();
+
+            String input_dir="default";
 
             Configuration conf = new Configuration();
             FileSystem fs = FileSystem.get(conf);
@@ -483,7 +486,11 @@ public class Hadoop_Implementation_class
             ArrayList<TriplesMap> list=new ArrayList<TriplesMap>();
 
             for (TriplesMap m : mapping.getTriplesMaps()) {
+
+                input_dir = m.getLogicalSource().getIdentifier();
+
                 list.add(m);
+
             }
 
 
@@ -500,11 +507,14 @@ public class Hadoop_Implementation_class
                     }
 
 
+            //encoded mapping file
+            source_and_mapping.add(encoded);
+            //logical source
+            source_and_mapping.add(input_dir);
 
 
 
-
-            return encoded;
+            return source_and_mapping;
         }
 
 
@@ -528,9 +538,11 @@ public class Hadoop_Implementation_class
             //shapefile
             if(conf.get("files_format").equals("shp")) {
 
-
                 //read mapping file (serialize) and pass it to configuration
-                conf.set("triplemap",all_triples_maps(conf.get("mapping_file")));
+                List<String> source_and_mapping = all_triples_maps(conf.get("mapping_file"));
+
+
+                conf.set("triplemap", source_and_mapping.get(0));
 
                 Job job = Job.getInstance(conf, "geotriples");
 
@@ -548,8 +560,17 @@ public class Hadoop_Implementation_class
                 job.setInputFormatClass(PointMultiPolygonFeatureInputFormat.class);
                 job.setOutputFormatClass(TextOutputFormat.class);
 
+                //override or retain the mapping file input directory
+                if(conf.get("input_dir").equals("default")) {
 
-                FileInputFormat.addInputPath(job, new Path(conf.get("input_dir")));
+                    FileInputFormat.addInputPath(job, new Path(source_and_mapping.get(1)));
+
+                }
+                else {
+
+                    FileInputFormat.addInputPath(job, new Path(conf.get("input_dir")));
+
+                }
 //            //FileInputFormat.setInputDirRecursive(job,true);
                 FileOutputFormat.setOutputPath(job, new Path(conf.get("output_dir")));
 
@@ -605,20 +626,36 @@ public class Hadoop_Implementation_class
             //csv
             else if(conf.get("files_format").equals("csv")) {
 
-                FileSystem fs_csv = FileSystem.get(conf);
-
-                FileStatus[] status = fs.listStatus(new Path(conf.get("input_dir")));
-
-                BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(status[0].getPath())));
-
-                String header_values = br.readLine();
-
-
-                conf.set("header_values",header_values);
-
-
                 //read mapping file (serialize) and pass it to configuration
-                conf.set("triplemap",all_triples_maps(conf.get("mapping_file")));
+                List<String> source_and_mapping = all_triples_maps(conf.get("mapping_file"));
+
+
+                //override or retain the mapping file input directory
+                if(conf.get("input_dir").equals("default")) {
+
+                    FileStatus[] status = fs.listStatus(new Path(source_and_mapping.get(1)));
+
+                    BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(status[0].getPath())));
+
+                    String header_values = br.readLine();
+
+                    conf.set("header_values",header_values);
+
+                }
+                else {
+
+                    FileStatus[] status = fs.listStatus(new Path(conf.get("input_dir")));
+
+                    BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(status[0].getPath())));
+
+                    String header_values = br.readLine();
+
+                    conf.set("header_values",header_values);
+                }
+
+
+
+                conf.set("triplemap", source_and_mapping.get(0));
 
 
                 Job job = Job.getInstance(conf, "geotriples");
@@ -637,7 +674,17 @@ public class Hadoop_Implementation_class
                 job.setOutputFormatClass(TextOutputFormat.class);
 
 
-                FileInputFormat.addInputPath(job, new Path(conf.get("input_dir")));
+                //override or retain the mapping file input directory
+                if(conf.get("input_dir").equals("default")) {
+
+                    FileInputFormat.addInputPath(job, new Path(source_and_mapping.get(1)));
+
+                }
+                else {
+
+                    FileInputFormat.addInputPath(job, new Path(conf.get("input_dir")));
+
+                }
 //            //FileInputFormat.setInputDirRecursive(job,true);
                 FileOutputFormat.setOutputPath(job, new Path(conf.get("output_dir")));
 

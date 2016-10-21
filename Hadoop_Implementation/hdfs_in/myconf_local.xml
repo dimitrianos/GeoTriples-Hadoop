@@ -8,7 +8,7 @@
         shp -> for shapefiles
         csv -> for csv files
         -->
-        <value>csv</value>
+        <value>shp</value>
     </property>
 
     <property>
@@ -16,15 +16,17 @@
         <!--
         The path to the mapping file
         -->
-        <value>Hadoop_Implementation/hdfs_in/4326_csv.txt</value>
+        <value>Hadoop_Implementation/hdfs_in/afg_adm_shp.ttl</value>
     </property>
 
     <property>
         <name>input_dir</name>
         <!--
         The path to the input directory
+        value="default"  -> get the input directory from the mapping file
+        value=<your_input> -> override the input directory from the mapping file
         -->
-        <value>/media/media_first/Downloads/Geotriples-Hadoop/Hadoop_Implementation/input</value>
+        <value>/media/media_first/Downloads/Geotriples-Hadoop/Hadoop_Implementation/input_1</value>
     </property>
 
     <property>

@@ -285,17 +285,10 @@ public class Hadoop_Implementation_class
 
             String line = val.toString();
 
-
-
             long key_value = key.get();
 
-            //header values
 
             if(key_value!=0){
-
-                //field_titles = Arrays.asList(line.split(","));
-                //System.out.println("AAAAAAAAAA");
-
 
 
                 //read titles and triples map
